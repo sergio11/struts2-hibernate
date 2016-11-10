@@ -41,7 +41,6 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Parameter;
 import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
-import org.hibernate.search.annotations.TikaBridge;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 
@@ -96,9 +95,6 @@ public class Book implements Serializable {
     @Field
     @Analyzer(definition = "customanalyzer")
     private String description;
-    @Field
-    @TikaBridge
-    private String excerpt;
     @IndexedEmbedded
     @ManyToMany
     private Set<Author> authors = new HashSet<>();
@@ -157,14 +153,6 @@ public class Book implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getExcerpt() {
-        return excerpt;
-    }
-
-    public void setExcerpt(String excerpt) {
-        this.excerpt = excerpt;
     }
     
     public Set<Author> getAuthors() {

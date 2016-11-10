@@ -1,0 +1,30 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.custom.i18n.resources" value="global" />
+    <package name="books" extends="struts-default">
+        <interceptors>
+            <interceptor-stack name="secure">
+                <interceptor-ref name="roles">
+                    <param name="allowedRoles">ADMIN</param>
+                </interceptor-ref>
+                <interceptor-ref name="paramsPrepareParamsStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="secure"/>
+        <!-- Books list -->
+        <action name="all" class="actions.books.BooksAction">
+            <result name="success">/WEB-INF/views/books.jsp</result>
+        </action>
+    </package>
+    <package name="accounts"  extends="struts-default">
+        <action name="login" >
+            <!-- The result configuration has access to de value stack. A OGNL expression can be used -->
+            <result>/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
+        </action>
+    </package>
+</struts>
