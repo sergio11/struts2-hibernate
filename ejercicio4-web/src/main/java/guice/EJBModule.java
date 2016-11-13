@@ -19,8 +19,6 @@ import facade.UserFacadeLocal;
  * @author sergio
  */
 public class EJBModule implements Module{
-    
-    private final static String JNDI_ENV = "java:comp/env/";
 
     @Override
     public void configure(Binder binder) {
@@ -28,11 +26,11 @@ public class EJBModule implements Module{
         binder.bind(Context.class).to(InitialContext.class);
         // Bind the remote interface to the JNDI name using the JNDI Provider
         binder.bind(BookFacadeLocal.class)
-            .toProvider(fromJndi(BookFacadeLocal.class, JNDI_ENV + "booksEJB"));
+            .toProvider(fromJndi(BookFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/BookFacade!facade.BookFacadeLocal"));
         binder.bind(GroupFacadeLocal.class)
-            .toProvider(fromJndi(GroupFacadeLocal.class, JNDI_ENV + "groupEJB"));
+            .toProvider(fromJndi(GroupFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/GroupFacade!facade.GroupFacadeLocal"));
         binder.bind(UserFacadeLocal.class)
-            .toProvider(fromJndi(UserFacadeLocal.class, JNDI_ENV + "userEJB"));
+            .toProvider(fromJndi(UserFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/UserFacade!facade.UserFacadeLocal"));
         
         
     }

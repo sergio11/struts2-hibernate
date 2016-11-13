@@ -38,22 +38,4 @@
         <description>Roles for registered users</description>
         <role-name>USER</role-name>
     </security-role>
-    <env-entry>
-        <description>Binding for book session bean</description>
-        <env-entry-name>booksEJB</env-entry-name>
-        <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/BookFacade!facade.BookFacadeLocal</env-entry-value>
-    </env-entry>
-    <env-entry>
-        <description>Binding for Group EJB</description>
-        <env-entry-name>groupEJB</env-entry-name>
-        <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>ava:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/GroupFacade!facade.GroupFacadeLocal</env-entry-value>
-    </env-entry>
-    <env-entry>
-        <description>Binding for User EJB</description>
-        <env-entry-name>userEJB</env-entry-name>
-        <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/UserFacade!facade.UserFacadeLocal</env-entry-value>
-    </env-entry>
 </web-app>

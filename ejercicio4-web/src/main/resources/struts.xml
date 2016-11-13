@@ -30,7 +30,21 @@
                 <param name="params.excludeParams">j_username,j_password,auth</param>
             </interceptor-ref>
             <!-- The result configuration has access to de value stack. A OGNL expression can be used -->
-            <result >/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
+            <result>/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
+        </action>
+        <action name="signup" class="actions.accounts.SignupAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result>/WEB-INF/views/accounts/signup.jsp</result>
+        </action>
+        <action name="create" class="actions.accounts.CreateUserAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input" type="redirectAction">signup</result>
+            <result type="redirectAction">signup</result>
         </action>
     </package>
 </struts>
