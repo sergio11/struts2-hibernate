@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:if test="#{parameters.auth}">
+        <s:if test="#parameters.auth">
             <s:text name="auth.failed" />
         </s:if>
         <form action="<%=request.getContextPath()%>/j_security_check" method="POST">

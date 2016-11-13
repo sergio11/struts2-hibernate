@@ -6,7 +6,14 @@
 package actions.books;
 
 import actions.BaseAction;
+import com.google.inject.Inject;
+import facade.BookFacadeLocal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import models.Book;
 
 /**
@@ -15,17 +22,18 @@ import models.Book;
  */
 public class BooksAction extends BaseAction {
     
+    @Inject
+    private BookFacadeLocal booksFacade;
+    
     private List<Book> books;
 
     public List<Book> getBooks() {
         return books;
     }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
     
     public String execute() throws Exception {
+        // get all books
+        books = booksFacade.findAll();
         return SUCCESS;
     }
     

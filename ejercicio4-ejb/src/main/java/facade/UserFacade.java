@@ -5,20 +5,17 @@
  */
 package facade;
 
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import models.Book;
+import models.User;
 
 /**
  *
  * @author sergio
  */
 @Stateless
-public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal {
+public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {
 
     @PersistenceContext(unitName = "ejercicio4PU")
     private EntityManager em;
@@ -28,7 +25,8 @@ public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal 
         return em;
     }
 
-    public BookFacade() {
-        super(Book.class);
+    public UserFacade() {
+        super(User.class);
     }
+    
 }

@@ -18,8 +18,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -50,11 +48,6 @@ import org.hibernate.search.annotations.TokenizerDef;
  */
 @Indexed
 @Entity
-@NamedQueries({
-    @NamedQuery(name="Book.get", query="SELECT e FROM Book e WHERE e.id = :id"),
-    @NamedQuery(name="Book.findAll", query="SELECT e FROM Book e "),
-    @NamedQuery(name="Book.findAllCount", query="SELECT COUNT(e) FROM Book e ") 
-})
 @AnalyzerDef(name = "customanalyzer",
   tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
   filters = {

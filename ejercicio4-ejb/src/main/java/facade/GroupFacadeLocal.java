@@ -7,28 +7,27 @@ package facade;
 
 import java.util.List;
 import javax.ejb.Local;
-import models.Book;
+import models.Group;
 
 /**
  *
  * @author sergio
  */
 @Local
-public interface BookFacadeLocal {
+public interface GroupFacadeLocal {
 
-    void create(Book book);
+    void create(Group group);
 
-    void edit(Book book);
+    void edit(Group group);
 
-    void remove(Book book);
+    void remove(Group group);
 
-    Book find(Object id);
+    Group find(Object id);
 
-    List<Book> findAll();
+    List<Group> findAll();
 
-    List<Book> findRange(int[] range);
+    List<Group> findRange(int[] range);
 
     int count();
-
     
 }

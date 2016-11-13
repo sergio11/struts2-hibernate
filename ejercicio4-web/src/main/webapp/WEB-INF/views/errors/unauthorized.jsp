@@ -1,11 +1,10 @@
 <%-- 
-    Document   : books
-    Created on : 09-nov-2016, 23:15:02
+    Document   : unauthorized
+    Created on : 13-nov-2016, 12:01:16
     Author     : sergio
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello <s:property value="principal.remoteUser.name" /></h1>
-        <h2>Número de libros: <s:property value="books.size" /></h2>
+        <h1>No puedes acceder a esta página</h1>
     </body>
 </html>

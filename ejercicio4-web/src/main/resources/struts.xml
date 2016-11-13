@@ -5,6 +5,8 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.devMode" value="true"/>
+    <!-- Use Guice as the ObjectFactory for this application -->
+    <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
     <package name="books" extends="struts-default">
         <interceptors>
@@ -15,16 +17,20 @@
                 <interceptor-ref name="paramsPrepareParamsStack"/>
             </interceptor-stack>
         </interceptors>
-        <default-interceptor-ref name="secure"/>
+        <!--<default-interceptor-ref name="secure"/>-->
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">
             <result name="success">/WEB-INF/views/books.jsp</result>
         </action>
     </package>
-    <package name="accounts"  extends="struts-default">
-        <action name="login" >
+    <package name="accounts" extends="struts-default">
+        <action name="login" class="actions.BaseAction">
+            <interceptor-ref name="defaultStack">
+                <param name="exception.logEnabled">true</param>
+                <param name="params.excludeParams">j_username,j_password,auth</param>
+            </interceptor-ref>
             <!-- The result configuration has access to de value stack. A OGNL expression can be used -->
-            <result>/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
+            <result >/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
         </action>
     </package>
 </struts>

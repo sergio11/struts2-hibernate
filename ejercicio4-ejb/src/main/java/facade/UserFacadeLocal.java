@@ -7,28 +7,27 @@ package facade;
 
 import java.util.List;
 import javax.ejb.Local;
-import models.Book;
+import models.User;
 
 /**
  *
  * @author sergio
  */
 @Local
-public interface BookFacadeLocal {
+public interface UserFacadeLocal {
 
-    void create(Book book);
+    void create(User user);
 
-    void edit(Book book);
+    void edit(User user);
 
-    void remove(Book book);
+    void remove(User user);
 
-    Book find(Object id);
+    User find(Object id);
 
-    List<Book> findAll();
+    List<User> findAll();
 
-    List<Book> findRange(int[] range);
+    List<User> findRange(int[] range);
 
     int count();
-
     
 }
