@@ -13,13 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <s:if test="#parameters.auth">
-            <s:text name="auth.failed" />
-        </s:if>
-        <form action="<%=request.getContextPath()%>/j_security_check" method="POST">
-            <s:text name="forms.login.username.label" /> <input type="text" name="j_username" /> <br />
-            <s:text name="forms.login.password.label" /> <input type="password" name="j_password" /> <br />
+        <s:actionerror theme="bootstrap"/>
+        <s:actionmessage theme="bootstrap"/>
+        <s:form action="check">
+            <s:text name="forms.login.username.label" /> <input type="text" name="username" /> <br />
+            <s:text name="forms.login.password.label" /> <input type="password" name="password" /> <br />
             <input type="submit" value="<s:text name='forms.login.submit' />" />
-        </form>
+        </s:form>
     </body>
 </html>

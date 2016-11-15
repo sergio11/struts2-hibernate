@@ -8,8 +8,7 @@
     <!-- Use Guice as the ObjectFactory for this application -->
     <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
-    <!-- Para evitar que el root namespace actue como el namespace por defecto -->
-    <constant name="struts.mapper.alwaysSelectFullNamespace" value="true" />
+    <constant name="struts.action.excludePattern" value="j_security_check" />
     <package name="books" extends="struts-default">
         <interceptors>
             <interceptor-stack name="secure">
@@ -26,13 +25,19 @@
         </action>
     </package>
     <package name="accounts" extends="struts-default">
-        <action name="login" class="actions.BaseAction">
-            <interceptor-ref name="defaultStack">
-                <param name="exception.logEnabled">true</param>
-                <param name="params.excludeParams">j_username,j_password,auth</param>
+        <action name="login" class="actions.accounts.SigninAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
-            <!-- The result configuration has access to de value stack. A OGNL expression can be used -->
-            <result>/WEB-INF/views/accounts/login.jsp?auth=${auth}</result>
+            <result>/WEB-INF/views/accounts/login.jsp</result>
+        </action>
+        <action name="check" class="actions.accounts.SigninAction" method="check">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input" type="redirectAction">login</result>
+            <result type="redirectAction">login</result>
         </action>
         <action name="signup" class="actions.accounts.SignupAction">
             <interceptor-ref name="store">

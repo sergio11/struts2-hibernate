@@ -9,7 +9,16 @@
         <url-pattern>*.action</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
+        <dispatcher>ERROR</dispatcher>
     </filter-mapping>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>booksRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/login_error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
     <listener>
         <listener-class>listeners.GuiceListener</listener-class>
     </listener>
@@ -22,14 +31,6 @@
         <error-code>403</error-code>
         <location>/WEB-INF/views/errors/unauthorized.jsp</location>
     </error-page>
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>booksRealm</realm-name>
-        <form-login-config>
-            <form-login-page>accounts/login.action</form-login-page>
-            <form-error-page>accounts/login.action?auth=false</form-error-page>
-        </form-login-config>
-    </login-config>
     <security-role>
         <description>Role for admin users</description>
         <role-name>ADMIN</role-name>
