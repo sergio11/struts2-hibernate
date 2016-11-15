@@ -8,6 +8,8 @@
     <!-- Use Guice as the ObjectFactory for this application -->
     <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
+    <!-- Para evitar que el root namespace actue como el namespace por defecto -->
+    <constant name="struts.mapper.alwaysSelectFullNamespace" value="true" />
     <package name="books" extends="struts-default">
         <interceptors>
             <interceptor-stack name="secure">
@@ -36,7 +38,9 @@
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
             <result>/WEB-INF/views/accounts/signup.jsp</result>
+            <result name="input">/WEB-INF/views/accounts/signup.jsp</result>
         </action>
         <action name="create" class="actions.accounts.CreateUserAction">
             <interceptor-ref name="store">

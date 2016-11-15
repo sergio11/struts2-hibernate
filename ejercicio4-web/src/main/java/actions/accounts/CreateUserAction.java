@@ -7,7 +7,6 @@ package actions.accounts;
 
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import facade.UserFacadeLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,21 +16,24 @@ import models.User;
  *
  * @author sergio
  */
-public class CreateUserAction extends ActionSupport implements ModelDriven<User>{
+public class CreateUserAction extends ActionSupport {
     
     @Inject
     private UserFacadeLocal userFacade;
     private User user = new User();
 
-    public String execute() throws Exception {
-        Logger.getLogger(SignupAction.class.getName()).log(Level.INFO, "Registrando usuario");
-        userFacade.create(user);
-        addActionMessage("Usuario registrado con éxito");
-        return SUCCESS;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     
-    @Override
-    public User getModel() {
-        return user;
+    public String execute() throws Exception {
+        //userFacade.create(user);
+        Logger.getLogger(CreateUserAction.class.getName()).log(Level.INFO, "NACIMIENTO: " + user.getBirthday().toString());
+        addActionMessage("Usuario registrado con éxito");
+        return SUCCESS;
     }
 }

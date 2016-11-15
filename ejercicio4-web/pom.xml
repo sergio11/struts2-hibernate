@@ -20,6 +20,13 @@
         <struts2.version>2.5.2</struts2.version>
         <guice.version>4.1.0</guice.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>sonatype.oss.snapshots</id>
+            <name>Sonatype OSS Snapshot Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
     
     <dependencies>
         <dependency>
@@ -52,6 +59,11 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-jndi</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jgeppert.struts2.jquery</groupId>
+            <artifactId>struts2-jquery-plugin</artifactId>
+            <version>4.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.sanchez.sanchez.sergio</groupId>

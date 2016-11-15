@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,8 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        <sb:head/>
+        <sj:head jqueryui="true"/>
+        <sb:head includeScripts="true" includeScriptsValidation="false"/>
     </head>
     <body>
         <s:actionerror theme="bootstrap"/>
@@ -27,16 +29,29 @@
         <s:form action="create" enctype="multipart/form-data" theme="bootstrap" cssClass="form-horizontal"
                     label="A sample horizontal Form">
             
-            <s:textfield label="Username" name="userName" tooltip="Enter username here"/>
-            <s:textfield label="Password" name="password" tooltip="Enter password here" />
-            <s:textfield label="Name" name="name" tooltip="Enter name here" />
-            <s:textfield label="Lastname" name="lastname" tooltip="Enter lastname here" />
+            <s:textfield label="%{getText('forms.signup.username.label')}" name="user.userName" tooltip="%{getText('forms.signup.username.tooltip')}"/>
+            <s:textfield label="%{getText('forms.signup.password.label')}" name="user.password" tooltip="%{getText('forms.signup.password.tooltip')}" />
+            <s:textfield label="%{getText('forms.signup.name.label')}" name="user.name" tooltip="%{getText('forms.signup.name.tooltip')}" />
+            <s:textfield label="%{getText('forms.signup.lastname.label')}" name="user.lastname" tooltip="%{getText('forms.signup.lastname.tooltip')}" />
             <s:checkboxlist
-                tooltip="select roles for user"
+                tooltip="%{getText('forms.signup.groups.tooltip')}"
                 labelposition="inline"
-                label="Roles"
+                label="%{getText('forms.signup.groups.label')}"
                 list="allGroups"
-                name="groups"/>
+                listKey="name"
+                listValue="name"
+                name="user.groups"/>
+            <sj:datepicker
+                id="datepicker"
+                parentTheme="bootstrap"
+                label="%{getText('forms.signup.birthday.label')}"
+                tooltip="%{getText('forms.signup.birthday.tooltip')}"
+                cssClass="form-control"
+                elementCssClass="col-sm-5"
+                showOn="focus"
+                inputAppendIcon="calendar"
+                name="user.birthday"
+                />
             <s:submit cssClass="btn"/>
         </s:form>
     </body>
