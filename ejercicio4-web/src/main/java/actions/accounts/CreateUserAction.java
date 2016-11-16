@@ -8,8 +8,6 @@ package actions.accounts;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import facade.UserFacadeLocal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import models.User;
 
 /**
@@ -21,7 +19,13 @@ public class CreateUserAction extends ActionSupport {
     @Inject
     private UserFacadeLocal userFacade;
     private User user = new User();
+    private Boolean userNameExists;
 
+    public Boolean getUserNameExists() {
+        userNameExists = userFacade.exists(user.getUserName());
+        return userNameExists;
+    }
+   
     public User getUser() {
         return user;
     }
@@ -31,9 +35,8 @@ public class CreateUserAction extends ActionSupport {
     }
     
     public String execute() throws Exception {
-        //userFacade.create(user);
-        Logger.getLogger(CreateUserAction.class.getName()).log(Level.INFO, "NACIMIENTO: " + user.getBirthday().toString());
-        addActionMessage("Usuario registrado con éxito");
+        userFacade.create(user);
+        addActionMessage(getText("success.user.create"));
         return SUCCESS;
     }
 }

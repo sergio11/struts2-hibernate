@@ -29,5 +29,7 @@ public interface UserFacadeLocal {
     List<User> findRange(int[] range);
 
     int count();
+
+    Boolean exists(final String username);
     
 }

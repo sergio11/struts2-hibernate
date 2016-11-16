@@ -35,7 +35,6 @@
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
             <result name="input" type="redirectAction">login</result>
             <result type="redirectAction">login</result>
         </action>
@@ -43,7 +42,6 @@
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
             <result>/WEB-INF/views/accounts/signup.jsp</result>
             <result name="input">/WEB-INF/views/accounts/signup.jsp</result>
         </action>

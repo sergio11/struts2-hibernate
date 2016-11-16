@@ -1,9 +1,43 @@
-<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
-        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+       "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
-    <validator type="visitor">
-        <param name="fieldName">user</param>
-        <param name="appendPrefix">false</param>
-        <message />
-    </validator>
+    <field name="user.userName">
+        <field-validator type="requiredstring">
+          <message key="validations.user.username.required">You must provide a user name in the application.</message>
+        </field-validator>
+        <field-validator type="fieldexpression">
+            <param name="expression"><![CDATA[userNameExists == false]]></param>
+            <message key="validations.user.username.exists">The specified user name is already in use.</message>
+        </field-validator>
+    </field>
+    <field name="user.name">
+      <field-validator type="requiredstring">
+          <message key="validations.user.name.required">You must enter a value for name.</message>
+      </field-validator>
+    </field>
+    <field name="user.birthday">
+       <field-validator type="required">
+          <message key="validations.user.birhtday.required">You must provide a birthdate.</message>
+      </field-validator>
+      <field-validator type="date">
+          <param name="min">1/1/1980</param>
+          <param name="max">31/12/2016</param>
+          <message key="validations.user.birhtday.date">Age needs to be between ${min} and ${max}.</message>
+      </field-validator>
+    </field>
+    <field name="user.email">
+        <field-validator type="required"> 
+            <message key="validations.user.email.required">You cannot leave the email address field empty.</message> 
+        </field-validator> 
+        <field-validator type="email"> 
+            <message key="validations.user.email.email">The email address you entered is not valid.</message> 
+        </field-validator> 
+    </field>
+    <field name="user.mobile">
+        <field-validator type="regex">
+            <param name="expression">\([\d][\d][\d]\) [\d][\d][\d]-[\d][\d][\d][\d]</param>
+            <message key="validations.user.mobile.phone">Phone number must be in the format (XXX) XXX-XXXX</message>
+        </field-validator>
+    </field>
 </validators>
