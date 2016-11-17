@@ -23,21 +23,19 @@
     <!-- Books package -->
     <package name="books" extends="app-default">
         <!--<default-interceptor-ref name="secure"/>-->
-        <!-- create book -->
-        <action name="create" class="actions.books.BookAction">
+        <!-- persist book -->
+        <action name="persist" class="actions.books.PrePersistBookAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
             <result type="tiles">app.books.persist</result>
         </action>
-        <action name="createProcess" class="actions.books.BookAction" method="persist">
-            <result name="input" type="redirectAction">create</result>
-            <result type="redirectAction">create</result>
-        </action>
-        <!-- update book -->
-        <action name="update" class="actions.books.BookAction">
-            <result type="tiles">app.books.persist</result>
-        </action>
-        <action name="updateProcess" class="actions.books.BookAction" method="persist">
-            <result name="input" type="redirectAction">update</result>
-            <result type="redirectAction">update</result>
+        <action name="persistProccess" class="actions.books.PostPersistBookAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="input" type="redirectAction">persist</result>
+            <result type="redirectAction">persist</result>
         </action>
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">

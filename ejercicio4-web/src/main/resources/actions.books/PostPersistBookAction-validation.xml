@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+       "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="book.title">
+        <field-validator type="requiredstring">
+            <message key="validations.book.title.requiredstring">You must provide a title for the book.</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">10</param>
+            <param name="maxLength">35</param>
+            <param name="trim">true</param>
+            <message key="validations.book.title.stringlength">The title should have a length of between ${min} and ${max}.</message>
+        </field-validator>
+    </field>
+    <field name="book.pages">
+        <field-validator type="int">
+            <param name="min">15</param>
+            <param name="max">3000</param>
+            <message key="validations.book.pages.int">The book should be between ${min} and ${max} pages.</message>
+        </field-validator>
+    </field>
+    <field name="book.isbn">
+        <field-validator type="requiredstring">
+            <message key="validations.book.isbn.requiredstring">The ISBN field is required.</message>
+        </field-validator>
+        <field-validator type="regex">
+            <param name="regex"><![CDATA[ISBN(-1(?:(0)|3))?:?\x20+(?(1)(?(2)(?:(?=.{13}$)\d{1,5}([ -])\d{1,7}\3\d{1,6}\3(?:\d|x)$)|(?:(?=.{17}$)97(?:8|9)([ -])\d{1,5}\4\d{1,7}\4\d{1,6}\4\d$))|(?(.{13}$)(?:\d{1,5}([ -])\d{1,7}\5\d{1,6}\5(?:\d|x)$)|(?:(?=.{17}$)97(?:8|9)([ -])\d{1,5}\6\d{1,7}\6\d{1,6}\6\d$)))]]></param>
+            <message key="validations.book.isbn.regex">The ISBN is not valid.</message>
+        </field-validator>
+    </field>
+    <field name="book.publicationDate">
+        <field-validator type="required">
+          <message key="validations.book.publicationDate.required">You must provide a publication date.</message>
+        </field-validator>
+        <field-validator type="date">
+            <param name="min">1/1/1980</param>
+            <param name="max">31/12/2016</param>
+            <message key="validations.book.publicationDate.date">Publication date needs to be between ${min} and ${max}.</message>
+        </field-validator>
+    </field>
+    <field name="book.level">
+        <field-validator type="required">
+            <message key="validations.book.level.required">You must indicate the level of the book.</message>
+        </field-validator>
+    </field>
+    <field name="book.description">
+        <field-validator type="stringlength">
+            <param name="minLength">10</param>
+            <param name="maxLength">900</param>
+            <param name="trim">true</param>
+            <message key="validations.book.description.stringlength">The description must be between ${min} and ${max} characters.</message>
+        </field-validator>
+    </field>
+    <field name="book.authors">
+        <field-validator type="fieldexpression">
+            <param name="expression"><![CDATA[book.authors.size >= 1]]></param>
+            <message key="validations.book.authors.size">You must indicate at least one author</message>
+        </field-validator>
+    </field>
+</validators>

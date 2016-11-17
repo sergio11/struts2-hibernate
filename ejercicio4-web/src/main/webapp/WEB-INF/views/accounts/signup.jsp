@@ -28,7 +28,6 @@
         listKey="name"
         listValue="name"
         name="user.groups"/>
-    
     <sj:datepicker
         id="datepicker"
         parentTheme="bootstrap"
@@ -41,10 +40,9 @@
         name="user.birthday"
         displayFormat="dd/mm/yy"
          />
-    
     <s:file
         tooltip="%{getText('forms.signup.profile.tooltip')}"
         label="%{getText('forms.signup.profile.label')}"
         name="upload"/>
-    <s:submit cssClass="btn"/>
+    <s:submit cssClass="btn" label="%{getText('forms.signup.save')}"/>
 </s:form>
