@@ -9,7 +9,8 @@
     <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
     <constant name="struts.action.excludePattern" value="j_security_check" />
-    <package name="books" extends="struts-default">
+    
+    <package name="app-default" extends="struts-default, tiles-default">
         <interceptors>
             <interceptor-stack name="secure">
                 <interceptor-ref name="roles">
@@ -18,11 +19,13 @@
                 <interceptor-ref name="paramsPrepareParamsStack"/>
             </interceptor-stack>
         </interceptors>
+    </package>
+    <!-- Books package -->
+    <package name="books" extends="app-default">
         <!--<default-interceptor-ref name="secure"/>-->
-        
         <!-- create book -->
         <action name="create" class="actions.books.BookAction">
-            <result>/WEB-INF/views/books/persist.jsp</result>
+            <result type="tiles">app.books.persist</result>
         </action>
         <action name="createProcess" class="actions.books.BookAction" method="persist">
             <result name="input" type="redirectAction">create</result>
@@ -30,7 +33,7 @@
         </action>
         <!-- update book -->
         <action name="update" class="actions.books.BookAction">
-            <result>/WEB-INF/views/books/persist.jsp</result>
+            <result type="tiles">app.books.persist</result>
         </action>
         <action name="updateProcess" class="actions.books.BookAction" method="persist">
             <result name="input" type="redirectAction">update</result>
@@ -38,10 +41,11 @@
         </action>
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">
-            <result name="success">/WEB-INF/views/books.jsp</result>
+            <result type="tiles">app.books.all</result>
         </action>
     </package>
-    <package name="accounts" extends="struts-default">
+    <!-- Accounts package -->
+    <package name="accounts" extends="app-default">
         <action name="login" class="actions.accounts.SigninAction">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
@@ -59,8 +63,8 @@
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
-            <result>/WEB-INF/views/accounts/signup.jsp</result>
-            <result name="input">/WEB-INF/views/accounts/signup.jsp</result>
+            <result type="tiles">app.accounts.signup</result>
+            <result name="input" type="tiles">app.accounts.signup</result>
         </action>
         <action name="create" class="actions.accounts.CreateUserAction">
             <interceptor-ref name="store">

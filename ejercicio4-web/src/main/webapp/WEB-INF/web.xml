@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+        <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
     <filter>
         <filter-name>guice</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
@@ -19,6 +23,9 @@
             <form-error-page>login.jsp?auth=false</form-error-page>
         </form-login-config>
     </login-config>
+    <listener>
+        <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
     <listener>
         <listener-class>listeners.GuiceListener</listener-class>
     </listener>
