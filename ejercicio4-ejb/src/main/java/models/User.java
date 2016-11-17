@@ -46,6 +46,7 @@ public class User implements Serializable {
     private Date birthday;
     private String email;
     private Integer mobile;
+    private String profileImage;
     @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable(
             name="USER_GROUPS",
@@ -123,7 +124,14 @@ public class User implements Serializable {
         return name + " " + lastname; 
     }
 
-    
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

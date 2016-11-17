@@ -9,11 +9,6 @@ import actions.BaseAction;
 import com.google.inject.Inject;
 import facade.BookFacadeLocal;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import models.Book;
 
 /**
@@ -36,6 +31,4 @@ public class BooksAction extends BaseAction {
         books = booksFacade.findAll();
         return SUCCESS;
     }
-    
-    
 }

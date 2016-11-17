@@ -41,5 +41,10 @@
         name="user.birthday"
         displayFormat="dd/mm/yy"
          />
+    
+    <s:file
+        tooltip="%{getText('forms.signup.profile.tooltip')}"
+        label="%{getText('forms.signup.profile.label')}"
+        name="upload"/>
     <s:submit cssClass="btn"/>
 </s:form>

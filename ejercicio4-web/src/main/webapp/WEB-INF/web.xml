@@ -4,6 +4,10 @@
         <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
         <param-value>/WEB-INF/tiles.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name>images_profile_folder</param-name>
+        <param-value>profile</param-value>
+    </context-param>
     <filter>
         <filter-name>guice</filter-name>
         <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>

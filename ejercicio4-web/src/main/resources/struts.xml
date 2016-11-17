@@ -70,6 +70,9 @@
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/jpg,image/png</param>
+            </interceptor-ref>
             <interceptor-ref name="defaultStack" />
             <result name="input" type="redirectAction">signup</result>
             <result type="redirectAction">signup</result>
