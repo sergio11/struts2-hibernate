@@ -31,7 +31,7 @@ public class EJBModule implements Module{
             .toProvider(fromJndi(GroupFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/GroupFacade!facade.GroupFacadeLocal"));
         binder.bind(UserFacadeLocal.class)
             .toProvider(fromJndi(UserFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/UserFacade!facade.UserFacadeLocal"));
-        
+       
         
     }
     

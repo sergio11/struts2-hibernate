@@ -19,6 +19,23 @@
             </interceptor-stack>
         </interceptors>
         <!--<default-interceptor-ref name="secure"/>-->
+        
+        <!-- create book -->
+        <action name="create" class="actions.books.BookAction">
+            <result>/WEB-INF/views/books/persist.jsp</result>
+        </action>
+        <action name="createProcess" class="actions.books.BookAction" method="persist">
+            <result name="input" type="redirectAction">create</result>
+            <result type="redirectAction">create</result>
+        </action>
+        <!-- update book -->
+        <action name="update" class="actions.books.BookAction">
+            <result>/WEB-INF/views/books/persist.jsp</result>
+        </action>
+        <action name="updateProcess" class="actions.books.BookAction" method="persist">
+            <result name="input" type="redirectAction">update</result>
+            <result type="redirectAction">update</result>
+        </action>
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">
             <result name="success">/WEB-INF/views/books.jsp</result>
