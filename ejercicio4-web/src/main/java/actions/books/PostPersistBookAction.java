@@ -5,21 +5,23 @@
  */
 package actions.books;
 
+import actions.FileProcessAction;
 import com.google.inject.Inject;
-import com.opensymphony.xwork2.ActionSupport;
 import facade.BookFacadeLocal;
+import java.io.IOException;
 import models.Book;
 
 /**
  *
  * @author sergio
  */
-public class PostPersistBookAction extends ActionSupport {
+public class PostPersistBookAction extends FileProcessAction{
     
     @Inject
     private BookFacadeLocal bookFacade;
     private Book book;
-
+    
+  
     public Book getBook() {
         return book;
     }
@@ -29,7 +31,18 @@ public class PostPersistBookAction extends ActionSupport {
     }
    
     public String execute() throws Exception{
-        addActionMessage(getText("success.book.save"));
-        return SUCCESS;
+        try{
+            if(upload != null){
+                uploadFile();
+                book.setExcerpt(uploadFileName);
+            }
+            bookFacade.create(book);
+            addActionMessage(getText("success.book.save"));
+            return SUCCESS;
+        } catch (IOException e){
+            e.printStackTrace();
+            return ERROR;
+        }
     }
+
 }

@@ -88,6 +88,7 @@ public class Book implements Serializable {
     @Field
     @Analyzer(definition = "customanalyzer")
     private String description;
+    private String excerpt;
     @IndexedEmbedded
     @ManyToMany
     private Set<Author> authors = new HashSet<>();
@@ -147,6 +148,15 @@ public class Book implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getExcerpt() {
+        return excerpt;
+    }
+
+    public void setExcerpt(String excerpt) {
+        this.excerpt = excerpt;
+    }
+    
     
     public Set<Author> getAuthors() {
         return authors;

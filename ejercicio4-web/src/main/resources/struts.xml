@@ -34,6 +34,9 @@
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">application/pdf</param>
+            </interceptor-ref>
             <result name="input" type="redirectAction">persist</result>
             <result type="redirectAction">persist</result>
         </action>
@@ -57,14 +60,14 @@
             <result name="input" type="redirectAction">login</result>
             <result type="redirectAction">login</result>
         </action>
-        <action name="signup" class="actions.accounts.SignupAction">
+        <action name="signup" class="actions.accounts.PreCreateUserAction">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <result type="tiles">app.accounts.signup</result>
             <result name="input" type="tiles">app.accounts.signup</result>
         </action>
-        <action name="create" class="actions.accounts.CreateUserAction">
+        <action name="create" class="actions.accounts.PostCreateUserAction">
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>

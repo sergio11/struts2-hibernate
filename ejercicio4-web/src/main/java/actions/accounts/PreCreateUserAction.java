@@ -18,7 +18,7 @@ import models.Group;
  *
  * @author sergio
  */
-public class SignupAction extends ActionSupport{
+public class PreCreateUserAction extends ActionSupport{
     
     @Inject
     private GroupFacadeLocal groupFacade;
@@ -30,9 +30,9 @@ public class SignupAction extends ActionSupport{
     }
     
     public String execute() throws Exception {
-        Logger.getLogger(SignupAction.class.getName()).log(Level.INFO, "Obteniendo grupos");
+        Logger.getLogger(PreCreateUserAction.class.getName()).log(Level.INFO, "Obteniendo grupos");
         allGroups = groupFacade.findAll();
-        Logger.getLogger(SignupAction.class.getName()).log(Level.INFO, "Número de grupos: " + allGroups.size());
+        Logger.getLogger(PreCreateUserAction.class.getName()).log(Level.INFO, "Número de grupos: " + allGroups.size());
         return SUCCESS;
     }
 }
