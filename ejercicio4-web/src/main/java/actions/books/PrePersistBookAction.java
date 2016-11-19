@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import facade.BookFacadeLocal;
+import java.util.logging.Logger;
 import models.Book;
 import models.Level;
 
@@ -40,11 +41,8 @@ public class PrePersistBookAction extends ActionSupport implements Preparable {
     }
 
     public Level[] getLevels() {
+        levels = Level.values();
         return levels;
-    }
-
-    public void setLevels(Level[] levels) {
-        this.levels = levels;
     }
     
     public String execute() throws Exception{
@@ -53,7 +51,6 @@ public class PrePersistBookAction extends ActionSupport implements Preparable {
 
     @Override
     public void prepare() throws Exception {
-        levels = Level.values();
         if(idBook != null){
             book = bookFacade.find(idBook);
         }else{
