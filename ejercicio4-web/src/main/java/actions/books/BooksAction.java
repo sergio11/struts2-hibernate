@@ -12,7 +12,6 @@ import java.util.List;
 import models.Book;
 
 /**
- *
  * @author sergio
  */
 public class BooksAction extends BaseAction {

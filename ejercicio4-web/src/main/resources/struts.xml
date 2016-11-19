@@ -9,7 +9,7 @@
     <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
     <constant name="struts.action.excludePattern" value="j_security_check" />
-    
+    <constant name="struts.url.includeParams" value="get" />
     <package name="app-default" extends="struts-default, tiles-default">
         <interceptors>
             <interceptor-stack name="secure">

@@ -3,14 +3,12 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <!-- Accounts Section -->
     <definition name="accounts.common" template="/WEB-INF/layout/accounts/common.jsp">
         <put-attribute name="alerts" value="/WEB-INF/views/alerts.jsp" />
     </definition>
     <definition name="accounts.signup" extends="accounts.common">
         <put-attribute name="content" value="/WEB-INF/views/accounts/signup.jsp" />
     </definition>
-    <!-- Book sections -->
     <definition name="books.common" template="/WEB-INF/layout/books/common.jsp">
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
         <put-attribute name="alerts" value="/WEB-INF/views/alerts.jsp" />
@@ -21,7 +19,6 @@
     <definition name="books.persist" extends="books.common">
         <put-attribute name="content" value="/WEB-INF/views/books/persist.jsp" />
     </definition>
-    <!-- Pages -->
     <definition name="app.common" template="/WEB-INF/layout/common.jsp">
         <put-attribute name="title" value="Ejercicio 4 | Curso Struts2" />
     </definition>
