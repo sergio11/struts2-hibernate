@@ -8,8 +8,10 @@ package actions.books;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import facade.AuthorFacadeLocal;
 import facade.BookFacadeLocal;
-import java.util.logging.Logger;
+import java.util.List;
+import models.Author;
 import models.Book;
 import models.Level;
 
@@ -20,9 +22,12 @@ import models.Level;
 public class PrePersistBookAction extends ActionSupport implements Preparable {
     @Inject
     private BookFacadeLocal bookFacade;
+    @Inject
+    private AuthorFacadeLocal authorFacade;
     private Integer idBook;
     private Book book;
     private Level[] levels;
+    private List<Author> authors;
 
     public Integer getIdBook() {
         return idBook;
@@ -43,6 +48,15 @@ public class PrePersistBookAction extends ActionSupport implements Preparable {
     public Level[] getLevels() {
         levels = Level.values();
         return levels;
+    }
+
+    public List<Author> getAuthors() {
+        authors = authorFacade.findAll();
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
     
     public String execute() throws Exception{

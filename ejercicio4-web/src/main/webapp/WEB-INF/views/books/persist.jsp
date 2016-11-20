@@ -9,6 +9,10 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
+<h2><s:text name="titles.book.persist" /></h2>
+
+<s:include  value="/WEB-INF/views/authors/create.jsp" />
+
 <s:form action="persistProccess" enctype="multipart/form-data" theme="bootstrap" 
         cssClass="form-horizontal">
     <s:textfield label="%{getText('forms.book.title.label')}" name="book.title" 
@@ -35,18 +39,29 @@
         labelposition="inline"
         list="levels"
         name="book.level"/>
-    <s:select
-        tooltip="%{getText('forms.book.authors.tooltip')}"
-        label="%{getText('forms.book.authors.label')}"
-        list="{'Red', 'Blue', 'Green'}"
-        name="book.authors"
-        emptyOption="true"
-        headerKey="fullname"
-        headerValue="id"/>
+    <div class="row">
+        <div class="col-md-11">
+            <s:select
+                tooltip="%{getText('forms.book.authors.tooltip')}"
+                label="%{getText('forms.book.authors.label')}"
+                disabled="%{authors.size == 0}"
+                list="authors"
+                name="book.authors"
+                emptyOption="true"
+                listKey="id"
+                listValue="fullname"/>
+        </div>
+        <div class="col-md-1 text-left">    
+            <button type="button" class="btn btn-primary pull-left" 
+                data-toggle="modal" data-target="#addAuthor">
+                 <s:text name="actions.add" />       
+            </button>
+        </div>
+    </div>
     <s:textarea
         label="%{getText('forms.book.description.label')}"
         name="book.description"
-        tooltip="%{getText('forms.book.description.tooltip')}"/> 
-    <s:submit cssClass="btn" label="%{getText('forms.book.save')}" />
+        tooltip="%{getText('forms.book.description.tooltip')}"/>
+    <s:submit cssClass="btn pull-right" value="%{getText('forms.book.save')}" />
 </s:form>
 

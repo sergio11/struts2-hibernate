@@ -68,5 +68,4 @@ public class Author implements Serializable{
     public String toString() {
         return "Author{" + "id=" + id + ", name=" + name + ", lastname=" + lastname + ", fullname=" + fullname + '}';
     }
-    
 }

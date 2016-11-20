@@ -45,6 +45,17 @@
             <result type="tiles">app.books.all</result>
         </action>
     </package>
+     <!-- Authors package -->
+    <package name="authors" extends="app-default">
+        <action name="createAuthor" class="actions.authors.CreateAuthorAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack" />
+            <result name="input" type="redirectAction">persist</result>
+            <result type="redirectAction">persist</result>
+        </action>
+    </package>
     <!-- Accounts package -->
     <package name="accounts" extends="app-default">
         <action name="login" class="actions.accounts.SigninAction">

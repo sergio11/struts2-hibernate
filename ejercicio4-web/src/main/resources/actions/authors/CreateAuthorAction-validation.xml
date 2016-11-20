@@ -1,0 +1,15 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+       "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="author.name">
+        <field-validator type="requiredstring">
+          <message key="validations.author.name.requiredstring">You must provide an author name.</message>
+        </field-validator>
+    </field>
+    <field name="author.lastname">
+      <field-validator type="requiredstring">
+          <message key="validations.author.lastname.requiredstring">You must provide the surname of the author.</message>
+      </field-validator>
+    </field>
+</validators>

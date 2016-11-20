@@ -9,9 +9,9 @@
 
 <h2><s:text name="titles.book.all" /></h2>
 <h3>Se han encontrado <s:property value="books.size" /> libros</h3>
-<row>
-    <s:a action="persist" cssClass="btn btn-primary"><s:text name="actions.books.add" /></s:a>
-</row>
+<div class="row">
+    <s:a action="persist" cssClass="btn btn-primary"><s:text name="actions.add" /></s:a>
+</div>
 <table class="table">
     <thead>
         <th>#</th>

@@ -9,6 +9,8 @@ import actions.FileProcessAction;
 import com.google.inject.Inject;
 import facade.BookFacadeLocal;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Book;
 
 /**
@@ -19,7 +21,7 @@ public class PostPersistBookAction extends FileProcessAction{
     
     @Inject
     private BookFacadeLocal bookFacade;
-    private Book book;
+    private Book book = new Book();
     
   
     public Book getBook() {
@@ -36,7 +38,8 @@ public class PostPersistBookAction extends FileProcessAction{
                 uploadFile();
                 book.setExcerpt(uploadFileName);
             }
-            bookFacade.create(book);
+            Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, book.toString());
+            //bookFacade.create(book);
             addActionMessage(getText("success.book.save"));
             return SUCCESS;
         } catch (IOException e){

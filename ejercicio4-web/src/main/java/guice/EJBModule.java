@@ -10,6 +10,7 @@ import com.google.inject.Module;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import static com.google.inject.jndi.JndiIntegration.fromJndi;
+import facade.AuthorFacadeLocal;
 import facade.BookFacadeLocal;
 import facade.GroupFacadeLocal;
 import facade.UserFacadeLocal;
@@ -31,8 +32,8 @@ public class EJBModule implements Module{
             .toProvider(fromJndi(GroupFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/GroupFacade!facade.GroupFacadeLocal"));
         binder.bind(UserFacadeLocal.class)
             .toProvider(fromJndi(UserFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/UserFacade!facade.UserFacadeLocal"));
-       
-        
+        binder.bind(AuthorFacadeLocal.class)
+            .toProvider(fromJndi(AuthorFacadeLocal.class, "java:global/ejercicio4-ear-1.0-SNAPSHOT/ejercicio4-ejb-1.0-SNAPSHOT/AuthorFacade!facade.AuthorFacadeLocal"));
     }
     
 }
