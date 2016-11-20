@@ -36,12 +36,12 @@
                     <td class="text-uppercase"><s:property value="authors.size" /></td>
                     <td class="text-uppercase">
                         <div class="btn-group">
-                            <s:url var="persistURL" action="persist">
+                            <s:url var="persistURL" action="persist" namespace="books" includeContext="false">
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:url>
-                            <s:a href="%{#persistURL}" cssClass="btn btn-primary"><s:text name="actions.books.edit" /></s:a>
-                            <button type="button" class=""><s:text name="actions.books.excerpt" /></button>
-                            <button type="button" class="btn btn-danger"><s:text name="actions.books.remove" /></button>
+                            <s:a href="%{#persistURL}" cssClass="btn btn-xs btn-primary"><s:text name="actions.books.edit" /></s:a>
+                            <button type="button" class="btn btn-xs btn-info"><s:text name="actions.books.excerpt" /></button>
+                            <button type="button" class="btn btn-xs btn-danger"><s:text name="actions.books.remove" /></button>
                         </div>
                     </td>
                 </tr>

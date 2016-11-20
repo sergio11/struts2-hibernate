@@ -8,7 +8,6 @@
     <!-- Use Guice as the ObjectFactory for this application -->
     <constant name="struts.objectFactory" value="guice" />
     <constant name="struts.custom.i18n.resources" value="global" />
-    <constant name="struts.action.excludePattern" value="j_security_check" />
     <constant name="struts.url.includeParams" value="get" />
     <!-- Default App Package -->
     <package name="app-default" abstract="true" extends="struts-default, tiles-default">
@@ -28,7 +27,7 @@
         </interceptors>
     </package>
     <!-- Books package -->
-    <package name="books" extends="app-default">
+    <package name="books" namespace="/books" extends="app-default">
         <!--<default-interceptor-ref name="secure"/>-->
         <!-- persist book -->
         <action name="persist" class="actions.books.PrePersistBookAction">
@@ -51,15 +50,18 @@
         </action>
     </package>
      <!-- Authors package -->
-    <package name="authors" extends="app-default">
-        <action name="createAuthor" class="actions.authors.CreateAuthorAction">
+    <package name="authors" namespace="/authors" extends="app-default">
+        <action name="create" class="actions.authors.CreateAuthorAction">
             <interceptor-ref name="storeFlashDataStack" />
-            <result name="input" type="redirectAction">persist</result>
-            <result type="redirectAction">persist</result>
+            <result name="input" type="redirectAction">books/persist</result>
+            <result type="redirectAction">
+                <param name="actionName">persist</param>
+                <param name="namespace">/books</param>
+            </result>
         </action>
     </package>
     <!-- Accounts package -->
-    <package name="accounts" extends="app-default">
+    <package name="accounts" namespace="/accounts" extends="app-default">
         <action name="login" class="actions.accounts.SigninAction">
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>

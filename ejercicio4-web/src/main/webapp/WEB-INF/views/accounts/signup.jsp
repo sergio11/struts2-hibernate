@@ -9,8 +9,8 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-
-<s:form action="create" enctype="multipart/form-data" theme="bootstrap" 
+<s:url var="createAccount" action="create" namespace="/accounts" includeContext="false"/>
+<s:form action="%{createAccount}" enctype="multipart/form-data" theme="bootstrap" 
         cssClass="form-horizontal">
     <s:textfield label="%{getText('forms.signup.username.label')}" name="user.userName" 
                  tooltip="%{getText('forms.signup.username.tooltip')}"/>

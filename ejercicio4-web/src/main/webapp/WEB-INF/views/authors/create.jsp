@@ -15,7 +15,8 @@
         <h4 class="modal-title"><s:text name="forms.author.legend" /></h4>
       </div>
       <div class="modal-body">
-        <s:form id="addAuthorForm" action="createAuthor" theme="bootstrap">
+        <s:url var="createAuthor" action="create" namespace="/authors" includeContext="false"/> 
+        <s:form id="addAuthorForm" action="%{createAuthor}" theme="bootstrap">
             <s:textfield label="%{getText('forms.author.name.label')}" name="author.name" 
                  tooltip="%{getText('forms.author.name.tooltip')}"/>
             <s:textfield label="%{getText('forms.author.lastname.label')}" name="author.lastname" 

@@ -12,8 +12,9 @@
 <h2><s:text name="titles.book.persist" /></h2>
 
 <s:include  value="/WEB-INF/views/authors/create.jsp" />
+<s:url var="persistProccess" action="persistProccess" namespace="/books" includeContext="false"/>
 
-<s:form action="persistProccess" enctype="multipart/form-data" theme="bootstrap" 
+<s:form action="%{persistProccess}" enctype="multipart/form-data" theme="bootstrap" 
         cssClass="form-horizontal">
     <s:textfield label="%{getText('forms.book.title.label')}" name="book.title" 
                  tooltip="%{getText('forms.book.title.tooltip')}"/>
