@@ -6,10 +6,13 @@
 package converters;
 
 import com.google.inject.Inject;
+import com.opensymphony.xwork2.conversion.TypeConversionException;
 import facade.AuthorFacadeLocal;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Author;
 import org.apache.struts2.util.StrutsTypeConverter;
 
@@ -23,13 +26,19 @@ public class AuthorConverter extends StrutsTypeConverter {
     private AuthorFacadeLocal authorFacade;
 
     @Override
-    public Object convertFromString(Map map, String[] values, Class type) {
-        Set<Author> authors = new HashSet();
-        for(String value: values){
-            Author author = authorFacade.find(value);
-            authors.add(author);
+    public Object convertFromString(Map map, String[] values, Class type){
+        try{
+            Set<Author> authors = new HashSet();
+            for(String value: values){
+                Author author = authorFacade.find(Long.valueOf(value));
+                authors.add(author);
+            }
+            return authors;
+        } catch(Exception e){
+            Logger.getLogger(AuthorConverter.class.getName()).log(Level.INFO, "El campo autor no es válido");
+            throw new TypeConversionException("El campo autor no es válido");
         }
-        return authors;
+        
     }
 
     @Override

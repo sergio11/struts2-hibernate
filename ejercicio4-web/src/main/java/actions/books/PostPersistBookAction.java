@@ -23,7 +23,6 @@ public class PostPersistBookAction extends FileProcessAction{
     private BookFacadeLocal bookFacade;
     private Book book = new Book();
     
-  
     public Book getBook() {
         return book;
     }
@@ -39,7 +38,7 @@ public class PostPersistBookAction extends FileProcessAction{
                 book.setExcerpt(uploadFileName);
             }
             Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, book.toString());
-            //bookFacade.create(book);
+            bookFacade.create(book);
             addActionMessage(getText("success.book.save"));
             return SUCCESS;
         } catch (IOException e){

@@ -10,13 +10,20 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     <constant name="struts.action.excludePattern" value="j_security_check" />
     <constant name="struts.url.includeParams" value="get" />
-    <package name="app-default" extends="struts-default, tiles-default">
+    <!-- Default App Package -->
+    <package name="app-default" abstract="true" extends="struts-default, tiles-default">
         <interceptors>
             <interceptor-stack name="secure">
                 <interceptor-ref name="roles">
                     <param name="allowedRoles">ADMIN</param>
                 </interceptor-ref>
                 <interceptor-ref name="paramsPrepareParamsStack"/>
+            </interceptor-stack>
+            <interceptor-stack name="storeFlashDataStack">
+                <interceptor-ref name="store">
+                    <param name="operationMode">STORE</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack" />
             </interceptor-stack>
         </interceptors>
     </package>
@@ -31,9 +38,7 @@
             <result type="tiles">app.books.persist</result>
         </action>
         <action name="persistProccess" class="actions.books.PostPersistBookAction">
-            <interceptor-ref name="store">
-                <param name="operationMode">STORE</param>
-            </interceptor-ref>
+            <interceptor-ref name="storeFlashDataStack" />
             <interceptor-ref name="fileUpload">
                 <param name="allowedTypes">application/pdf</param>
             </interceptor-ref>
@@ -48,10 +53,7 @@
      <!-- Authors package -->
     <package name="authors" extends="app-default">
         <action name="createAuthor" class="actions.authors.CreateAuthorAction">
-            <interceptor-ref name="store">
-                <param name="operationMode">STORE</param>
-            </interceptor-ref>
-            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="storeFlashDataStack" />
             <result name="input" type="redirectAction">persist</result>
             <result type="redirectAction">persist</result>
         </action>
