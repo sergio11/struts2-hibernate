@@ -25,6 +25,12 @@
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>
         </interceptors>
+        <global-results>
+            <result name="ejbexception" type="tiles">app.error.ejbexception</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="javax.ejb.EJBException" result="ejbexception" />
+        </global-exception-mappings>
     </package>
     <!-- Books package -->
     <package name="books" namespace="/books" extends="app-default">

@@ -34,4 +34,7 @@
         <put-attribute name="title" value="Guardar información del libro" />
         <put-attribute name="body" value="books.persist" />
     </definition>
+    <definition name="app.error.ejbexception" extends="/WEB-INF/layout/common.jsp">
+        <put-attribute name="body" value="/WEB-INF/views/errors/ejbexception.jsp" />
+    </definition>
 </tiles-definitions>

@@ -35,6 +35,7 @@ public class AuthorConverter extends StrutsTypeConverter {
             }
             return authors;
         } catch(Exception e){
+            e.printStackTrace();
             Logger.getLogger(AuthorConverter.class.getName()).log(Level.INFO, "El campo autor no es válido");
             throw new TypeConversionException("El campo autor no es válido");
         }
