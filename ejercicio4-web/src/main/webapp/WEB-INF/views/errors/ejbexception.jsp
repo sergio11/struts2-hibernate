@@ -7,4 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="alert alert-info" role="alert"><s:text name="errors.ejbexception" /></div>
+<div class="container">
+    <div class="alert alert-info" role="alert"><s:text name="errors.ejbexception" /></div>
+</div>
+

@@ -35,8 +35,13 @@ public class PostPersistBookAction extends FileProcessAction{
             uploadFile();
             book.setExcerpt(uploadFileName);
         }
-        Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, book.toString());
-        bookFacade.create(new Book());
+        if(book.getId() != null){
+            Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, "UPDATE BOOK: " + book.toString());
+            bookFacade.edit(book);
+        }else{
+            Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, "SAVE BOOK: " + book.toString());
+            bookFacade.create(book);
+        }
         addActionMessage(getText("success.book.save"));
         return SUCCESS;
     }

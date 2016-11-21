@@ -9,9 +9,7 @@
 
 <h2><s:text name="titles.book.all" /></h2>
 <h3>Se han encontrado <s:property value="books.size" /> libros</h3>
-<div class="row">
-    <s:a action="persist" cssClass="btn btn-primary"><s:text name="actions.add" /></s:a>
-</div>
+
 <table class="table">
     <thead>
         <th>#</th>
@@ -36,10 +34,10 @@
                     <td class="text-uppercase"><s:property value="authors.size" /></td>
                     <td class="text-uppercase">
                         <div class="btn-group">
-                            <s:url var="persistURL" action="persist" namespace="books" includeContext="false">
+                            <s:a action="persist"  namespace="books" includeContext="false"  cssClass="btn btn-xs btn-success">
+                                <s:text name="actions.books.edit" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
-                            </s:url>
-                            <s:a href="%{#persistURL}" cssClass="btn btn-xs btn-primary"><s:text name="actions.books.edit" /></s:a>
+                            </s:a>
                             <button type="button" class="btn btn-xs btn-info"><s:text name="actions.books.excerpt" /></button>
                             <button type="button" class="btn btn-xs btn-danger"><s:text name="actions.books.remove" /></button>
                         </div>
@@ -54,4 +52,7 @@
         </s:else>
     </tbody>
 </table>
+<div class="row">
+    <s:a action="persist" cssClass="btn btn-primary"><s:text name="actions.add" /></s:a>
+</div>
 

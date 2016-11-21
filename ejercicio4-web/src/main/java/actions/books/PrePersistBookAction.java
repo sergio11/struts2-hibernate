@@ -24,25 +24,25 @@ public class PrePersistBookAction extends ActionSupport implements Preparable {
     private BookFacadeLocal bookFacade;
     @Inject
     private AuthorFacadeLocal authorFacade;
-    private Integer idBook;
-    private Book book;
+    private Long idBook;
+    private Book bookEdit;
     private Level[] levels;
     private List<Author> authors;
 
-    public Integer getIdBook() {
+    public Long getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(Integer idBook) {
+    public void setIdBook(Long idBook) {
         this.idBook = idBook;
     }
 
-    public Book getBook() {
-        return book;
+    public Book getBookEdit() {
+        return bookEdit;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookEdit(Book bookEdit) {
+        this.bookEdit = bookEdit;
     }
 
     public Level[] getLevels() {
@@ -66,9 +66,9 @@ public class PrePersistBookAction extends ActionSupport implements Preparable {
     @Override
     public void prepare() throws Exception {
         if(idBook != null){
-            book = bookFacade.find(idBook);
+            bookEdit = bookFacade.find(idBook);
         }else{
-            book = new Book();
+            bookEdit = new Book();
         }
     }
     
