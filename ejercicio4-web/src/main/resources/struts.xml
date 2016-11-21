@@ -51,8 +51,18 @@
             <result name="input" type="redirectAction">persist</result>
             <result type="redirectAction">persist.action?idBook=${book.id}</result>
         </action>
+        <!-- Remove book -->
+        <action name="remove" class="actions.books.RemoveBookAction">
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <interceptor-ref name="paramsPrepareParamsStack" />
+            <result name="input" type="redirectAction">all</result>
+            <result type="redirectAction">all</result>
+        </action>
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">
+            <interceptor-ref name="storeFlashDataStack" />
             <result type="tiles">app.books.all</result>
         </action>
     </package>

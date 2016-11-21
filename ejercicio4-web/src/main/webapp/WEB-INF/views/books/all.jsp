@@ -33,13 +33,17 @@
                     <td class="text-uppercase"><s:property value="level" /></td>
                     <td class="text-uppercase"><s:property value="authors.size" /></td>
                     <td class="text-uppercase">
+                        <s:include value="/WEB-INF/views/books/remove.jsp">
+                            <s:param name="book" value="book" />
+                        </s:include>
                         <div class="btn-group">
                             <s:a action="persist"  namespace="books" includeContext="false"  cssClass="btn btn-xs btn-success">
                                 <s:text name="actions.books.edit" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:a>
                             <button type="button" class="btn btn-xs btn-info"><s:text name="actions.books.excerpt" /></button>
-                            <button type="button" class="btn btn-xs btn-danger"><s:text name="actions.books.remove" /></button>
+                            <button type="button" class="btn btn-xs btn-danger" 
+                                    data-toggle="modal" data-target="#removeBook_<s:property value="id" />"><s:text name="actions.books.remove" /></button>
                         </div>
                     </td>
                 </tr>
