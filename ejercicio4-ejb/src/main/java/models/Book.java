@@ -93,7 +93,7 @@ public class Book implements Serializable {
     @IndexedEmbedded
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<Author> authors = new HashSet<>();
-
+    
     public Long getId() {
         return id;
     }

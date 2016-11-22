@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="util" uri="/WEB-INF/tld/utils" %>
 
 <h2><s:text name="titles.book.all" /></h2>
 <s:if test="query == null">
@@ -31,18 +32,7 @@
 </s:else>
 <div class="row" style="margin:.5rem 0;">
     <s:a action="persist" cssClass="btn btn-success pull-right"><s:text name="actions.add" /></s:a>
-    <s:form method="GET" cssClass="form-inline pull-right">
-        <div class="form-group">
-            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-            <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-                <input type="text" name="query" class="form-control" value="<s:property value="query" />" />
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            <s:text name="forms.search.submit" />
-        </button>
-    </s:form>
+    <util:form-search  />
 </div>
 <table class="table">
     <thead>
@@ -65,13 +55,13 @@
                     <td class="text-uppercase"><s:property value="isbn" /></td>
                     <td class="text-uppercase"><s:property value="publicationDate" /></td>
                     <td class="text-uppercase"><s:property value="level" /></td>
-                    <td class="text-uppercase"><s:property value="authors.size" /></td>
+                    <td class="text-uppercase"><s:property value="%{authors.size()}" /></td>
                     <td class="text-uppercase">
                         <s:include value="/WEB-INF/views/books/remove.jsp">
                             <s:param name="book" value="book" />
                         </s:include>
                         <div class="btn-group">
-                            <s:a action="persist"  namespace="books" includeContext="false"  cssClass="btn btn-xs btn-success">
+                            <s:a action="persist" namespace="books" includeParams="get" cssClass="btn btn-xs btn-success">
                                 <s:text name="actions.books.edit" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:a>
