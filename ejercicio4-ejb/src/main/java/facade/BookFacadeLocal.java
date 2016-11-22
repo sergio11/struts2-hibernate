@@ -30,5 +30,7 @@ public interface BookFacadeLocal {
 
     int count();
 
+    List<Book> search(final String keyword);
+
     
 }

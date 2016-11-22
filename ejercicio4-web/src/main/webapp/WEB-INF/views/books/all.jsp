@@ -8,8 +8,42 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <h2><s:text name="titles.book.all" /></h2>
-<h3>Se han encontrado <s:property value="books.size" /> libros</h3>
-
+<s:if test="query == null">
+    <h3>
+        <s:text name="title.book.count">
+            <s:param name="count">
+                <s:property value="books.size" />
+            </s:param>
+        </s:text>
+    </h3>
+</s:if>
+<s:else>
+    <h3>
+        <s:text name="title.book.filter.count">
+            <s:param name="count">
+                <s:property value="books.size" />
+            </s:param>
+            <s:param name="filter">
+                <s:property value="query" />
+            </s:param>
+        </s:text>
+    </h3>
+</s:else>
+<div class="row" style="margin:.5rem 0;">
+    <s:a action="persist" cssClass="btn btn-success pull-right"><s:text name="actions.add" /></s:a>
+    <s:form method="GET" cssClass="form-inline pull-right">
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                <input type="text" name="query" class="form-control" value="<s:property value="query" />" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <s:text name="forms.search.submit" />
+        </button>
+    </s:form>
+</div>
 <table class="table">
     <thead>
         <th>#</th>
@@ -56,7 +90,4 @@
         </s:else>
     </tbody>
 </table>
-<div class="row">
-    <s:a action="persist" cssClass="btn btn-primary"><s:text name="actions.add" /></s:a>
-</div>
 

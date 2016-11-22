@@ -24,6 +24,12 @@
                 </interceptor-ref>
                 <interceptor-ref name="defaultStack" />
             </interceptor-stack>
+            <interceptor-stack name="storeParamsPrepareParamsStack">
+                <interceptor-ref name="store">
+                    <param name="operationMode">STORE</param>
+                </interceptor-ref>
+                <interceptor-ref name="paramsPrepareParamsStack" />
+            </interceptor-stack>
         </interceptors>
         <global-results>
             <result name="ejbexception" type="tiles">app.error.ejbexception</result>
@@ -62,7 +68,7 @@
         </action>
         <!-- Books list -->
         <action name="all" class="actions.books.BooksAction">
-            <interceptor-ref name="storeFlashDataStack" />
+            <interceptor-ref name="storeParamsPrepareParamsStack" />
             <result type="tiles">app.books.all</result>
         </action>
     </package>

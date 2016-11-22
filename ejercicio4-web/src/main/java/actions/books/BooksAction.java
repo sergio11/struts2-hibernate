@@ -7,27 +7,47 @@ package actions.books;
 
 import actions.BaseAction;
 import com.google.inject.Inject;
+import com.opensymphony.xwork2.Preparable;
 import facade.BookFacadeLocal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Book;
 
 /**
  * @author sergio
  */
-public class BooksAction extends BaseAction {
+public class BooksAction extends BaseAction implements Preparable {
     
     @Inject
     private BookFacadeLocal booksFacade;
-    
+    private String query;
     private List<Book> books;
 
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+   
     public List<Book> getBooks() {
         return books;
     }
     
     public String execute() throws Exception {
-        // get all books
-        books = booksFacade.findAll();
         return SUCCESS;
+    }
+
+    @Override
+    public void prepare() throws Exception {
+        Logger.getLogger(BooksAction.class.getName()).log(Level.INFO, "Prepare BooksAction");
+        if(query != null){
+            books = booksFacade.search(query);
+        }else{
+            // get all books
+            books = booksFacade.findAll();
+        }
     }
 }
