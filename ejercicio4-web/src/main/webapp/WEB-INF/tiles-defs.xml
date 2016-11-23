@@ -16,6 +16,9 @@
     <definition name="books.all" extends="books.common">
         <put-attribute name="content" value="/WEB-INF/views/books/all.jsp" />
     </definition>
+    <definition name="books.show" extends="books.common">
+        <put-attribute name="content" value="/WEB-INF/views/books/show.jsp" />
+    </definition>
     <definition name="books.persist" extends="books.common">
         <put-attribute name="content" value="/WEB-INF/views/books/persist.jsp" />
     </definition>
@@ -29,6 +32,10 @@
     <definition name="app.books.all" template="/WEB-INF/layout/common.jsp">
         <put-attribute name="title" value="Todos los libros encontrados" />
         <put-attribute name="body" value="books.all" />
+    </definition>
+    <definition name="app.books.show" template="/WEB-INF/layout/common.jsp">
+        <put-attribute name="title" value="Ver libro" />
+        <put-attribute name="body" value="books.show" />
     </definition>
     <definition name="app.books.persist" template="/WEB-INF/layout/common.jsp">
         <put-attribute name="title" value="Guardar información del libro" />

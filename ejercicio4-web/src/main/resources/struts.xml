@@ -58,6 +58,11 @@
             <result name="input" type="redirectAction">persist</result>
             <result type="redirectAction">persist.action?idBook=${book.id}</result>
         </action>
+        <!-- Show Book -->
+        <action name="show" class="actions.books.BookAction">
+            <interceptor-ref name="paramsPrepareParamsStack" />
+            <result type="tiles">app.books.show</result>
+        </action>
         <!-- Remove book -->
         <action name="remove" class="actions.books.RemoveBookAction">
             <interceptor-ref name="store">

@@ -67,7 +67,10 @@
                                 <s:text name="actions.books.edit" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:a>
-                            <button type="button" class="btn btn-xs btn-info"><s:text name="actions.books.excerpt" /></button>
+                            <s:a action="show" namespace="books" includeParams="get" cssClass="btn btn-xs btn-info">
+                                <s:text name="actions.books.show" />
+                                <s:param name="idBook"><s:property value="id" /></s:param>
+                            </s:a>
                             <button type="button" class="btn btn-xs btn-danger" 
                                     data-toggle="modal" data-target="#removeBook_<s:property value="id" />"><s:text name="actions.books.remove" /></button>
                         </div>
