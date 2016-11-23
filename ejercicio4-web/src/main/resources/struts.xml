@@ -47,6 +47,7 @@
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>
             <interceptor-ref name="paramsPrepareParamsStack" />
+            <result name="input" type="tiles">app.books.persist</result>
             <result type="tiles">app.books.persist</result>
         </action>
         <action name="persistProccess" class="actions.books.PostPersistBookAction">

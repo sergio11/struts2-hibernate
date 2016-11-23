@@ -26,7 +26,7 @@ public interface UserFacadeLocal {
 
     List<User> findAll();
 
-    List<User> findRange(int[] range);
+    List<User> findRange(int offset, int count);
 
     int count();
 

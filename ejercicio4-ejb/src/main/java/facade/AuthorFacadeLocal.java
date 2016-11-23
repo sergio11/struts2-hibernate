@@ -26,7 +26,7 @@ public interface AuthorFacadeLocal {
 
     List<Author> findAll();
 
-    List<Author> findRange(int[] range);
+    List<Author> findRange(int offset, int count);
 
     int count();
     

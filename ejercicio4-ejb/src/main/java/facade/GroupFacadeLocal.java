@@ -26,7 +26,7 @@ public interface GroupFacadeLocal {
 
     List<Group> findAll();
 
-    List<Group> findRange(int[] range);
+    List<Group> findRange(int offset, int count);
 
     int count();
     

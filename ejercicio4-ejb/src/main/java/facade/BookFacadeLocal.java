@@ -26,7 +26,7 @@ public interface BookFacadeLocal {
 
     List<Book> findAll();
 
-    List<Book> findRange(int[] range);
+    List<Book> findRange(int offset, int count);
 
     int count();
 

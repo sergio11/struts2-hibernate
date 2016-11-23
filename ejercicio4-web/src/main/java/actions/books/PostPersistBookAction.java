@@ -32,8 +32,8 @@ public class PostPersistBookAction extends FileProcessAction{
    
     public String execute() throws Exception {
         if (upload != null) {
-            uploadFile();
-            book.setExcerpt(uploadFileName);
+            String pathFile = uploadFile("excerpt_folder");
+            book.setExcerpt(pathFile);
         }
         if(book.getId() != null){
             Logger.getLogger(PostPersistBookAction.class.getName()).log(Level.INFO, "UPDATE BOOK: " + book.toString());

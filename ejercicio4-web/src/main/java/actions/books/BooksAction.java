@@ -10,8 +10,6 @@ import com.google.inject.Inject;
 import com.opensymphony.xwork2.Preparable;
 import facade.BookFacadeLocal;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import models.Book;
 
 /**
@@ -19,9 +17,14 @@ import models.Book;
  */
 public class BooksAction extends BaseAction implements Preparable {
     
+    private final static Integer DEFAULT_OFFSET = 0;
+    private final static Integer DEFAULT_COUNT = 10;
+    
     @Inject
     private BookFacadeLocal booksFacade;
     private String query;
+    private Integer offset = DEFAULT_OFFSET;
+    private Integer count = DEFAULT_COUNT;
     private List<Book> books;
 
     public String getQuery() {
@@ -31,7 +34,23 @@ public class BooksAction extends BaseAction implements Preparable {
     public void setQuery(String query) {
         this.query = query;
     }
-   
+
+    public Integer getOffset() {
+        return offset;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+    
     public List<Book> getBooks() {
         return books;
     }
@@ -42,12 +61,11 @@ public class BooksAction extends BaseAction implements Preparable {
 
     @Override
     public void prepare() throws Exception {
-        Logger.getLogger(BooksAction.class.getName()).log(Level.INFO, "Prepare BooksAction");
         if(query != null){
             books = booksFacade.search(query);
         }else{
             // get all books
-            books = booksFacade.findAll();
+            books = booksFacade.findRange(offset, count);
         }
     }
 }

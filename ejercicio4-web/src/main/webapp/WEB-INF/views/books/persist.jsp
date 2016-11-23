@@ -66,6 +66,10 @@
             </button>
         </div>
     </div>
+    <s:file
+        tooltip="%{getText('forms.book.excerpt.tooltip')}"
+        label="%{getText('forms.book.excerpt.label')}"
+        name="upload"/>
     <s:textarea
         label="%{getText('forms.book.description.label')}"
         name="book.description"

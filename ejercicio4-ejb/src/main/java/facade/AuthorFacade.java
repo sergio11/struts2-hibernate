@@ -5,6 +5,7 @@
  */
 package facade;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +29,4 @@ public class AuthorFacade extends AbstractFacade<Author> implements AuthorFacade
     public AuthorFacade() {
         super(Author.class);
     }
-    
 }

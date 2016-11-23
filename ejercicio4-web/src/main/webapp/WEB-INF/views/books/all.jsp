@@ -5,8 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="util" uri="/WEB-INF/tld/utils" %>
+
 
 <h2><s:text name="titles.book.all" /></h2>
 <s:if test="query == null">
@@ -34,7 +36,7 @@
     <s:a action="persist" cssClass="btn btn-success pull-right"><s:text name="actions.add" /></s:a>
     <util:form-search  />
 </div>
-<table class="table">
+<table class="table table-condensed table-striped">
     <thead>
         <th>#</th>
         <th><s:text name="table.books.thead.title" /></th>
@@ -80,4 +82,3 @@
         </s:else>
     </tbody>
 </table>
-

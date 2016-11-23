@@ -9,6 +9,8 @@ import org.apache.struts2.util.ServletContextAware;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import org.apache.commons.io.FileUtils;
 
@@ -22,7 +24,7 @@ public abstract class FileProcessAction extends ActionSupport implements Servlet
     protected File upload;
     protected String uploadFileName;
     protected String uploadContentType;
-
+    
     public File getUpload() {
         return upload;
     }
@@ -47,11 +49,14 @@ public abstract class FileProcessAction extends ActionSupport implements Servlet
         this.uploadContentType = uploadContentType;
     }
     
-    protected void uploadFile() throws IOException{
-        String folder = (String) servletContext.getAttribute("images_profile_folder");
+    protected String uploadFile(String folderTargetKey) throws IOException{
+        String folder = (String) servletContext.getAttribute(folderTargetKey);
         String destPath = servletContext.getRealPath("") + File.separator +  folder;
+        Logger.getLogger(FileProcessAction.class.getName()).log(Level.INFO, "DEST PATH: " + destPath);
         File destFile = new File(destPath, uploadFileName);
+        Logger.getLogger(FileProcessAction.class.getName()).log(Level.INFO, "DEST File: " + destFile);
         FileUtils.copyFile(upload, destFile);
+        return folder + File.separator + uploadFileName;
     }
 
     @Override

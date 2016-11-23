@@ -37,7 +37,7 @@ public class PostCreateUserAction extends FileProcessAction {
     public String execute() throws Exception {   
         try {
             if(upload != null){
-                uploadFile();
+                uploadFile("images_profile_folder");
                 user.setProfileImage(uploadFileName);
             }
             userFacade.create(user);
