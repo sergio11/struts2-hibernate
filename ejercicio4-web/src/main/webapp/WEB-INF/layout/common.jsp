@@ -23,6 +23,7 @@
         <sj:head jqueryui="true"/>
         <sb:head includeScripts="true" includeScriptsValidation="false"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slate.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css" />
     </head>
     <body>
         <tiles:insertAttribute name="body" />

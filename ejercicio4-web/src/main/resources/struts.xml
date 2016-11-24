@@ -30,6 +30,12 @@
                 </interceptor-ref>
                 <interceptor-ref name="paramsPrepareParamsStack" />
             </interceptor-stack>
+            <interceptor-stack name="retrieveParamsPrepareParamsStack">
+                <interceptor-ref name="store">
+                    <param name="operationMode">RETRIEVE</param>
+                </interceptor-ref>
+                <interceptor-ref name="paramsPrepareParamsStack" />
+            </interceptor-stack>
         </interceptors>
         <global-results>
             <result name="ejbexception" type="tiles">app.error.ejbexception</result>
@@ -42,21 +48,17 @@
     <package name="books" namespace="/books" extends="app-default">
         <!--<default-interceptor-ref name="secure"/>-->
         <!-- persist book -->
-        <action name="persist" class="actions.books.PrePersistBookAction">
-            <interceptor-ref name="store">
-                <param name="operationMode">RETRIEVE</param>
-            </interceptor-ref>
-            <interceptor-ref name="paramsPrepareParamsStack" />
-            <result name="input" type="tiles">app.books.persist</result>
+        <action name="persist" class="actions.books.PersistBookAction">
+            <interceptor-ref name="retrieveParamsPrepareParamsStack"/>
             <result type="tiles">app.books.persist</result>
         </action>
-        <action name="persistProccess" class="actions.books.PostPersistBookAction">
+        <action name="persistProccess" class="actions.books.PersistBookAction" method="proccess">
             <interceptor-ref name="storeFlashDataStack" />
             <interceptor-ref name="fileUpload">
                 <param name="allowedTypes">application/pdf</param>
             </interceptor-ref>
             <result name="input" type="redirectAction">persist</result>
-            <result type="redirectAction">persist.action?idBook=${book.id}</result>
+            <result type="redirectAction">persist?idBook=${book.id}</result>
         </action>
         <!-- Show Book -->
         <action name="show" class="actions.books.BookAction">

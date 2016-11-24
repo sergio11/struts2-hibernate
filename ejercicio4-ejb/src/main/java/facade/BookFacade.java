@@ -44,7 +44,7 @@ public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal 
                 .forEntity(Book.class)
                 .get();
         org.apache.lucene.search.Query luceneQuery = qb.keyword()
-                .onFields("title", "description", "authors.name").matching(keyword)
+                .onFields("title", "description", "authors.name", "excerpt").matching(keyword)
                 .createQuery();
         // wrap Lucene query in a javax.persistence.Query
         javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Book.class);

@@ -12,7 +12,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+import java.net.URI;
+import java.util.Calendar;
 
 /**
  *
@@ -49,14 +53,31 @@ public abstract class FileProcessAction extends ActionSupport implements Servlet
         this.uploadContentType = uploadContentType;
     }
     
-    protected String uploadFile(String folderTargetKey) throws IOException{
-        String folder = (String) servletContext.getAttribute(folderTargetKey);
+    private String getBaseUrl() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String scheme = request.getScheme() + "://";
+        String serverName = request.getServerName();
+        String serverPort = (request.getServerPort() == 80) ? "" : ":" + request.getServerPort();
+        String contextPath = request.getContextPath();
+        return scheme + serverName + serverPort + contextPath;
+     }
+    
+    protected URI uploadFile(String folderTargetKey) throws IOException{
+        //String folder = (String) servletContext.getAttribute(folderTargetKey);
+        String folder = "excerpt";
+        String extension = "";
+        if (uploadFileName != null && !uploadFileName.equals("")) {
+            extension = uploadFileName.substring(uploadFileName.lastIndexOf("."), uploadFileName.length());
+        }
+
+        long longName = Calendar.getInstance().getTimeInMillis(); //date in miliseconds
+        String newFileName = longName + extension;
         String destPath = servletContext.getRealPath("") + File.separator +  folder;
         Logger.getLogger(FileProcessAction.class.getName()).log(Level.INFO, "DEST PATH: " + destPath);
-        File destFile = new File(destPath, uploadFileName);
+        File destFile = new File(destPath, newFileName);
         Logger.getLogger(FileProcessAction.class.getName()).log(Level.INFO, "DEST File: " + destFile);
         FileUtils.copyFile(upload, destFile);
-        return folder + File.separator + uploadFileName;
+        return URI.create(getBaseUrl() + '/' + folder + '/' + newFileName);
     }
 
     @Override

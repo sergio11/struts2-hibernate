@@ -14,18 +14,18 @@
 <s:include  value="/WEB-INF/views/authors/create.jsp" />
 <s:url var="persistProccess" action="persistProccess" namespace="/books" includeContext="false"/>
 
-<s:if test="%{idBook != null and bookEdit == null}">
+<s:if test="%{idBook != null and book == null}">
     <div class="alert alert-danger" role="alert"><s:text name="errors.books.notfound" /></div>
 </s:if>
 
 <s:form action="%{persistProccess}" enctype="multipart/form-data" theme="bootstrap" 
         cssClass="form-horizontal">
     <s:textfield label="%{getText('forms.book.title.label')}" name="book.title" 
-                 tooltip="%{getText('forms.book.title.tooltip')}" value="%{bookEdit.title}"/>
+                 tooltip="%{getText('forms.book.title.tooltip')}" value="%{book.title}"/>
     <s:textfield type="number" label="%{getText('forms.book.pages.label')}" name="book.pages" 
-                 tooltip="%{getText('forms.book.pages.tooltip')}" value="%{bookEdit.pages}"/>
+                 tooltip="%{getText('forms.book.pages.tooltip')}" value="%{book.pages}"/>
     <s:textfield label="%{getText('forms.book.isbn.label')}" name="book.isbn" 
-                 tooltip="%{getText('forms.book.isbn.tooltip')}" value="%{bookEdit.isbn}"/>
+                 tooltip="%{getText('forms.book.isbn.tooltip')}" value="%{book.isbn}"/>
     <sj:datepicker
         id="datepicker"
         parentTheme="bootstrap"
@@ -37,7 +37,7 @@
         inputAppendIcon="calendar"
         name="book.publicationDate"
         displayFormat="dd/mm/yy"
-        value="%{bookEdit.publicationDate}"
+        value="%{book.publicationDate}"
          />
     <s:radio
         tooltip="%{getText('forms.book.level.tooltip')}"
@@ -45,7 +45,7 @@
         labelposition="inline"
         list="levels"
         name="book.level"
-        value="%{bookEdit.level}"/>
+        value="%{book.level}"/>
     <div class="row">
         <div class="col-md-11">
             <s:select
@@ -57,7 +57,7 @@
                 emptyOption="false"
                 listKey="id"
                 listValue="fullname"
-                value="%{bookEdit.authors}"/>
+                value="%{book.authors}"/>
         </div>
         <div class="col-md-1 text-left">    
             <button type="button" class="btn btn-primary pull-left" 
@@ -74,14 +74,13 @@
         label="%{getText('forms.book.description.label')}"
         name="book.description"
         tooltip="%{getText('forms.book.description.tooltip')}"
-        value="%{bookEdit.description}"/>
-    <s:if test="bookEdit.id">
-        <s:hidden name="book.id" value="%{bookEdit.id}" />
+        value="%{book.description}"/>
+    <s:if test="book.id">
+        <s:hidden name="book.id" value="%{book.id}" />
         <s:submit cssClass="btn btn-success pull-right" value="%{getText('forms.book.update')}" />
     </s:if>
     <s:else>
         <s:submit cssClass="btn btn-success pull-right" value="%{getText('forms.book.save')}" />
     </s:else>
-  
 </s:form>
 

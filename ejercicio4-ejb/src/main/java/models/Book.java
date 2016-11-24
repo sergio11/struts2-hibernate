@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -90,8 +91,9 @@ public class Book implements Serializable {
     @Field
     @Analyzer(definition = "customanalyzer")
     private String description;
+    @Field
     @TikaBridge
-    private String excerpt;
+    private URI excerpt;
     @IndexedEmbedded
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<Author> authors = new HashSet<>();
@@ -152,14 +154,13 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public String getExcerpt() {
+    public URI getExcerpt() {
         return excerpt;
     }
 
-    public void setExcerpt(String excerpt) {
+    public void setExcerpt(URI excerpt) {
         this.excerpt = excerpt;
     }
-    
     
     public Set<Author> getAuthors() {
         return authors;
