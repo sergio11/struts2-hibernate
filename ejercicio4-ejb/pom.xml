@@ -18,7 +18,8 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>5.0.9.Final</hibernate.version>
-        <hibernate.search.version>5.5.4.Final</hibernate.search.version>
+        <hibernate.search.version>5.5.5.Final</hibernate.search.version>
+        <hibernate.entity.manager>5.0.11.Final</hibernate.entity.manager>
     </properties>
 
     <dependencies>
@@ -38,13 +39,11 @@
                   <artifactId>lucene-backward-codecs</artifactId>
                 </exclusion>
             </exclusions> 
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.1.Final</version>
-            <scope>provided</scope>
+            <version>${hibernate.entity.manager}</version>
         </dependency>
     </dependencies>
 

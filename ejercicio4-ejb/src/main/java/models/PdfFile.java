@@ -14,8 +14,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import org.hibernate.search.annotations.Field;
 
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TikaBridge;
 
 /**
  *
@@ -35,6 +37,7 @@ public class PdfFile implements Serializable {
 
     @Lob
     @Column(name = "content")
+    @TikaBridge
     private byte[] content;
 
     public PdfFile() {
