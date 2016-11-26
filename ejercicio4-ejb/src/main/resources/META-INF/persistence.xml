@@ -3,11 +3,7 @@
   <persistence-unit name="ejercicio4PU" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>java:/jdbc/booksDS</jta-data-source>
-    <class>models.Author</class>
-    <class>models.Book</class>
-    <class>models.Group</class>
-    <class>models.User</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.search.lucene_version" value="LUCENE_CURRENT"/>
       <property name="hibernate.search.default.directory_provider" value="filesystem"/>

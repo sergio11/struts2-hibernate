@@ -5,17 +5,16 @@
  */
 package actions.accounts;
 
-import actions.FileProcessAction;
+import actions.UploadFileAction;
 import com.google.inject.Inject;
 import facade.UserFacadeLocal;
 import models.User;
-import java.io.IOException;
 
 /**
  *
  * @author sergio
  */
-public class PostCreateUserAction extends FileProcessAction {
+public class PostCreateUserAction extends UploadFileAction {
     
     @Inject
     private UserFacadeLocal userFacade;
@@ -35,17 +34,8 @@ public class PostCreateUserAction extends FileProcessAction {
     }
     
     public String execute() throws Exception {   
-        try {
-            if(upload != null){
-                uploadFile("images_profile_folder");
-                user.setProfileImage(uploadFileName);
-            }
-            userFacade.create(user);
-            addActionMessage(getText("success.user.create"));
-            return SUCCESS;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ERROR;
-        }
+        userFacade.create(user);
+        addActionMessage(getText("success.user.create"));
+        return SUCCESS;
     }
 }
