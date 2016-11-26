@@ -65,6 +65,15 @@
             <interceptor-ref name="paramsPrepareParamsStack" />
             <result type="tiles">app.books.show</result>
         </action>
+        <action name="pdf" class="actions.books.ShowPDFAction">
+            <interceptor-ref name="basicStack" />
+            <result name="success" type="stream">
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">inline;filename="test.pdf"</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
         <!-- Remove book -->
         <action name="remove" class="actions.books.RemoveBookAction">
             <interceptor-ref name="store">

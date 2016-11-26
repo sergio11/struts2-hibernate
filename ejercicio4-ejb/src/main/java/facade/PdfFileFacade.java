@@ -5,7 +5,6 @@
  */
 package facade;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,7 @@ import models.PdfFile;
  * @author sergio
  */
 @Stateless
-public class FileStorageFacade extends AbstractFacade<PdfFile> implements FileStorageFacadeLocal {
+public class PdfFileFacade extends AbstractFacade<PdfFile> implements PdfFileFacadeLocal {
 
     @PersistenceContext(unitName = "ejercicio4PU")
     private EntityManager em;
@@ -26,7 +25,8 @@ public class FileStorageFacade extends AbstractFacade<PdfFile> implements FileSt
         return em;
     }
 
-    public FileStorageFacade() {
+    public PdfFileFacade() {
         super(PdfFile.class);
     }
+    
 }

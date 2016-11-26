@@ -14,13 +14,13 @@ import models.PdfFile;
  * @author sergio
  */
 @Local
-public interface FileStorageFacadeLocal {
+public interface PdfFileFacadeLocal {
 
-    void create(PdfFile fileStorage);
+    void create(PdfFile pdfFile);
 
-    void edit(PdfFile fileStorage);
+    void edit(PdfFile pdfFile);
 
-    void remove(PdfFile fileStorage);
+    void remove(PdfFile pdfFile);
 
     PdfFile find(Object id);
 
