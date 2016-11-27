@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,13 +38,14 @@ public class PdfFile implements Serializable {
 
     @Lob
     @Column(name = "content")
+    @Field
     @TikaBridge
-    private byte[] content;
+    private Blob content;
 
     public PdfFile() {
     }
 
-    public PdfFile(String fileName, byte[] content) {
+    public PdfFile(String fileName, Blob content) {
         this.fileName = fileName;
         this.content = content;
     }
@@ -64,11 +66,11 @@ public class PdfFile implements Serializable {
         this.fileName = fileName;
     }
 
-    public byte[] getContent() {
+    public Blob getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
+    public void setContent(Blob content) {
         this.content = content;
     }
 

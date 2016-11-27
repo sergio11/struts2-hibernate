@@ -8,7 +8,6 @@ package actions.books;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import facade.PdfFileFacadeLocal;
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import models.PdfFile;
 
@@ -41,7 +40,7 @@ public class ShowPDFAction extends ActionSupport{
     
     public String execute() throws Exception {
         PdfFile pdf = pdfsFacade.find(idPdf);
-        inputStream = new ByteArrayInputStream(pdf.getContent()); 
+        inputStream = pdf.getContent().getBinaryStream();
         return SUCCESS;
     }
 }
