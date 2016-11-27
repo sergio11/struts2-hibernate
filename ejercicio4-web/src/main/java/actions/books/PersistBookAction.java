@@ -5,7 +5,7 @@
  */
 package actions.books;
 
-import actions.FileProcessAction;
+import actions.UploadFileAction;
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.Preparable;
 import facade.AuthorFacadeLocal;
@@ -15,15 +15,17 @@ import java.util.Map;
 import java.util.logging.Logger;
 import models.Author;
 import models.Book;
+import models.PdfFile;
 import models.Level;
-import java.net.URI;
 import org.apache.struts2.interceptor.SessionAware;
+import utils.upload.UploadPdfFileStrategy;
+import utils.upload.UploadStrategy;
 
 /**
  *
  * @author sergio
  */
-public class PersistBookAction extends FileProcessAction implements Preparable, SessionAware{
+public class PersistBookAction extends UploadFileAction implements Preparable, SessionAware{
     
     private final static String CURRENT_BOOK = "current_book";
     @Inject
@@ -76,9 +78,11 @@ public class PersistBookAction extends FileProcessAction implements Preparable, 
    
     public String proccess() throws Exception {
         session.put(CURRENT_BOOK, book);
+        // upload file
         if (upload != null) {
-            URI uriFile = uploadFile("excerpt_folder");
-            book.setExcerpt(uriFile);
+            UploadStrategy<PdfFile> uploadStrategy = new UploadPdfFileStrategy();
+            PdfFile file = uploadStrategy.upload(upload, uploadFileName);
+            book.setExcerpt(file);
         }
         if(book.getId() != null){
             Logger.getLogger(PersistBookAction.class.getName()).log(java.util.logging.Level.INFO, "UPDATE BOOK: " + book.toString());

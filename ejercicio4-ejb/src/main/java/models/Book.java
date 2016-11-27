@@ -6,10 +6,10 @@
 package models;
 
 import java.io.Serializable;
-import java.net.URI;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -20,6 +20,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.Temporal;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -41,12 +43,10 @@ import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Parameter;
 import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
-import org.hibernate.search.annotations.TikaBridge;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 
 /**
- *
  * @author sergio
  */
 @Indexed
@@ -91,9 +91,10 @@ public class Book implements Serializable {
     @Field
     @Analyzer(definition = "customanalyzer")
     private String description;
-    @Field
-    @TikaBridge
-    private URI excerpt;
+    @IndexedEmbedded
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER, targetEntity = PdfFile.class)
+    @JoinColumn(name="excerpt_id")
+    private PdfFile excerpt;
     @IndexedEmbedded
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<Author> authors = new HashSet<>();
@@ -154,11 +155,11 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public URI getExcerpt() {
+    public PdfFile getExcerpt() {
         return excerpt;
     }
 
-    public void setExcerpt(URI excerpt) {
+    public void setExcerpt(PdfFile excerpt) {
         this.excerpt = excerpt;
     }
     
@@ -170,7 +171,6 @@ public class Book implements Serializable {
         this.authors = authors;
     }
     
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -193,6 +193,6 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + ", pages=" + pages + ", isbn=" + isbn + ", publicationDate=" + publicationDate + ", level=" + level + ", description=" + description + ", excerpt=" + excerpt + ", authors=" + authors + '}';
+        return "Book{" + "id=" + id + ", title=" + title + ", pages=" + pages + ", isbn=" + isbn + ", publicationDate=" + publicationDate + ", level=" + level + '}';
     }
 }
