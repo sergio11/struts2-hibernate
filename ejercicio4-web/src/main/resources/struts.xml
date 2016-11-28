@@ -12,6 +12,7 @@
     <!-- Default App Package -->
     <package name="app-default" abstract="true" extends="struts-default, tiles-default">
         <interceptors>
+            <interceptor name="saveParamsOnSession" class="interceptors.SaveParamsOnSession"/>
             <interceptor-stack name="secure">
                 <interceptor-ref name="roles">
                     <param name="allowedRoles">ADMIN</param>
@@ -29,12 +30,7 @@
                     <param name="operationMode">STORE</param>
                 </interceptor-ref>
                 <interceptor-ref name="paramsPrepareParamsStack" />
-            </interceptor-stack>
-            <interceptor-stack name="retrieveParamsPrepareParamsStack">
-                <interceptor-ref name="store">
-                    <param name="operationMode">RETRIEVE</param>
-                </interceptor-ref>
-                <interceptor-ref name="paramsPrepareParamsStack" />
+                <interceptor-ref name="saveParamsOnSession" />
             </interceptor-stack>
         </interceptors>
         <global-results>
@@ -49,16 +45,21 @@
         <!--<default-interceptor-ref name="secure"/>-->
         <!-- persist book -->
         <action name="persist" class="actions.books.PersistBookAction">
-            <interceptor-ref name="retrieveParamsPrepareParamsStack"/>
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <interceptor-ref name="servletConfig" />
+            <interceptor-ref name="params" />
+            <interceptor-ref name="prepare" />
             <result type="tiles">app.books.persist</result>
         </action>
-        <action name="persistProccess" class="actions.books.PersistBookAction" method="proccess">
-            <interceptor-ref name="storeFlashDataStack" />
+        <action name="proccess" class="actions.books.PersistBookAction" method="proccess">
+            <interceptor-ref name="storeParamsPrepareParamsStack" />
             <interceptor-ref name="fileUpload">
                 <param name="allowedTypes">application/pdf</param>
             </interceptor-ref>
-            <result name="input" type="redirectAction">persist</result>
-            <result type="redirectAction">persist?idBook=${book.id}</result>
+            <result name="input" type="redirectAction">persist.action?idBook=${book.id}</result>
+            <result type="redirectAction">persist.action?idBook=${book.id}</result>
         </action>
         <!-- Show Book -->
         <action name="show" class="actions.books.BookAction">

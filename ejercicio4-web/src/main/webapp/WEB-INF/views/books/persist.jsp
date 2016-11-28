@@ -12,7 +12,7 @@
 <h2><s:text name="titles.book.persist" /></h2>
 
 <s:include  value="/WEB-INF/views/authors/create.jsp" />
-<s:url var="persistProccess" action="persistProccess" namespace="/books" includeContext="false"/>
+<s:url var="persistProccess" action="proccess" namespace="/books" includeContext="false"/>
 
 <s:if test="%{idBook != null and book == null}">
     <div class="alert alert-danger" role="alert"><s:text name="errors.books.notfound" /></div>

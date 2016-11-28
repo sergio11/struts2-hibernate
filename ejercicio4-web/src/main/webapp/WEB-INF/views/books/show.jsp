@@ -11,12 +11,12 @@
 
 <div class="row">
     <s:if test="book.excerpt != null">
-        <iframe class="pull-left" width="500" height="500" src="<s:url action="pdf" namespace="books" includeContext="false" includeParams="get">
-                    <s:param name="idPdf">
-                        <s:property value="book.excerpt.id"/>
-                    </s:param>
-                </s:url>"></iframe>
-        </s:if>
+        <iframe class="pull-left" width="500" height="500" style="margin-bottom: 1rem;" src="<s:url action="pdf" namespace="books" includeContext="false" includeParams="get">
+            <s:param name="idPdf">
+                <s:property value="book.excerpt.id"/>
+            </s:param>
+        </s:url>"></iframe>
+    </s:if>
 
     <div class="panel panel-default pull-left" style="margin: .2rem .5rem">
         <!-- Default panel contents -->
@@ -44,7 +44,7 @@
             </li>
         </ul>
     </div>
-            
+
     <div class="panel panel-default pull-left" style="margin: .2rem .5rem">
         <!-- Default panel contents -->
         <div class="panel-heading"><s:text name="titles.book.information.authors" /></div>
@@ -58,18 +58,16 @@
         </ul>
     </div>
 
-</div>
-
-
-            
-<s:if test="book.description != null">
-    <div class="panel panel-default pull-left" style="margin: 1rem .5rem">
-        <!-- Default panel contents -->
-        <div class="panel-heading"><s:text name="titles.book.information.description" /></div>
-        <div class="panel-body">
-            <p><s:property value="book.description"/></p>
+    <s:if test="book.description != null">
+        <div class="panel panel-default pull-left" style="margin: .2rem .5rem">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><s:text name="titles.book.information.description" /></div>
+            <div class="panel-body">
+                <p><s:property value="book.description"/></p>
+            </div>
         </div>
-    </div>
-</s:if>
+    </s:if>
+
+</div>
 
 
