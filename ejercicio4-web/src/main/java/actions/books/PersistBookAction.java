@@ -77,6 +77,7 @@ public class PersistBookAction extends UploadFileAction implements Preparable, S
     }
    
     public String proccess() throws Exception {
+        Logger.getLogger(PersistBookAction.class.getName()).log(java.util.logging.Level.INFO, "Proccess form book ...");
         session.put(CURRENT_BOOK, book);
         // upload file
         if (upload != null) {

@@ -57,7 +57,7 @@
                     <td class="text-uppercase"><s:property value="isbn" /></td>
                     <td class="text-uppercase"><s:property value="publicationDate" /></td>
                     <td class="text-uppercase"><s:property value="level" /></td>
-                    <td class="text-uppercase"><s:property value="%{authors.size()}" /></td>
+                    <td class="text-uppercase"><s:property value ="authors.size"/> </td>
                     <td class="text-uppercase">
                         <s:include value="/WEB-INF/views/books/remove.jsp">
                             <s:param name="book" value="book" />

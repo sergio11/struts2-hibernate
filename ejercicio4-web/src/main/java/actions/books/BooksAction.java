@@ -10,6 +10,8 @@ import com.google.inject.Inject;
 import com.opensymphony.xwork2.Preparable;
 import facade.BookFacadeLocal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Book;
 
 /**
@@ -66,6 +68,7 @@ public class BooksAction extends BaseAction implements Preparable {
         }else{
             // get all books
             books = booksFacade.findRange(offset, count);
+            Logger.getLogger(BooksAction.class.getName()).log(Level.INFO, "books[0].toString(): " + books.get(0).toString());
         }
     }
 }
