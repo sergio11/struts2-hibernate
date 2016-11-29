@@ -58,6 +58,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="allowedTypes">application/pdf</param>
             </interceptor-ref>
+            <exception-mapping exception="java.io.IOException" result="input" />
             <result name="input" type="redirectAction">persist.action?idBook=${book.id}</result>
             <result type="redirectAction">persist.action?idBook=${book.id}</result>
         </action>
