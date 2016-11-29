@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import models.PdfFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.common.PDStream;
 import utils.pdf.PDFTextAnnotator;
 
 /**
@@ -54,15 +53,22 @@ public class ShowPDFAction extends ActionSupport{
     }
     
     private void highlightContent() throws IOException, Exception{
+        PDDocument document = null;
+        try{
         ByteArrayOutputStream output = new ByteArrayOutputStream(); 
-        PDDocument document = PDDocument.load(inputStream);
+        document = PDDocument.load(inputStream);
         PDFTextAnnotator pdfAnnotator = new PDFTextAnnotator("UTF-8");
         pdfAnnotator.setLineSeparator(" ");
         pdfAnnotator.initialize(document);
         pdfAnnotator.highlight(document, highlight);
         document.save(output);
-        document.close();
         inputStream = new ByteArrayInputStream(output.toByteArray());
+        } catch(IOException e){
+            throw e;
+        } finally {
+            if(document != null)
+                document.close();
+        }
     }
     
     public String execute() throws Exception {
