@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <s:a action="home" cssClass="navbar-brand">Books</s:a>
+            <s:a action="home" namespace="books" includeContext="false" cssClass="navbar-brand">Books</s:a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
