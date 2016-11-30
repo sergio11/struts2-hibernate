@@ -43,6 +43,10 @@
     <!-- Books package -->
     <package name="books" namespace="/books" extends="app-default">
         <!--<default-interceptor-ref name="secure"/>-->
+        <default-action-ref name="home" />
+        <action name="home" class="actions.BaseAction">
+            <result type="tiles">app.books.home</result>
+        </action>
         <!-- persist book -->
         <action name="persist" class="actions.books.PersistBookAction">
             <interceptor-ref name="store">
@@ -58,6 +62,7 @@
             <interceptor-ref name="fileUpload">
                 <param name="allowedTypes">application/pdf</param>
             </interceptor-ref>
+            <exception-mapping exception="java.io.IOException" result="input" />
             <result name="input" type="redirectAction">persist.action?idBook=${book.id}</result>
             <result type="redirectAction">persist.action?idBook=${book.id}</result>
         </action>

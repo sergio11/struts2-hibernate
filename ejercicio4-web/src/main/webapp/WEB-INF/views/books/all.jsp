@@ -45,6 +45,7 @@
         <th><s:text name="table.books.thead.publicationDate" /></th>
         <th><s:text name="table.books.thead.level" /></th>
         <th><s:text name="table.books.thead.authors" /></th>
+        <th><s:text name="table.books.thead.excerpt" /></th>
         <th><s:text name="table.books.thead.actions" /></th>
     </thead>
     <tbody>
@@ -59,15 +60,43 @@
                     <td class="text-uppercase"><s:property value="level" /></td>
                     <td class="text-uppercase"><s:property value ="authors.size"/> </td>
                     <td class="text-uppercase">
+                        <s:if test="excerpt != null">
+                            <s:if test="query != null">
+                                <s:a action="pdf" download="excerpt.pdf" namespace="books" includeContext="false" includeParams="get" cssClass="btn btn-xs btn-info">
+                                    <s:param name="idPdf">
+                                        <s:property value="excerpt.id"/>
+                                    </s:param>
+                                    <s:param name="highlight">
+                                        <s:property value="query" />
+                                     </s:param>
+                                    <s:text name="table.books.thead.excerpt" />
+                                </s:a>
+                            </s:if>
+                            <s:else>
+                                <s:a action="pdf" download="excerpt.pdf" namespace="books" includeContext="false" includeParams="get" cssClass="btn btn-xs btn-info">
+                                    <s:param name="idPdf">
+                                        <s:property value="excerpt.id"/>
+                                    </s:param>
+                                    <s:text name="table.books.thead.excerpt" />
+                                </s:a>
+                            </s:else>
+                        </s:if>
+                        <s:else>
+                            <button class="btn btn-xs btn-info" disabled="true">
+                                <s:text name="table.books.thead.excerpt" />
+                            </button>
+                        </s:else>
+                    </td>
+                    <td class="text-uppercase">
                         <s:include value="/WEB-INF/views/books/remove.jsp">
                             <s:param name="book" value="book" />
                         </s:include>
                         <div class="btn-group">
-                            <s:a action="persist" namespace="books" includeParams="get" cssClass="btn btn-xs btn-success">
+                            <s:a action="persist" namespace="books" includeParams="get" includeContext="false" cssClass="btn btn-xs btn-success">
                                 <s:text name="actions.books.edit" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:a>
-                            <s:a action="show" namespace="books" includeParams="get" cssClass="btn btn-xs btn-info">
+                            <s:a action="show" namespace="books" includeParams="get" includeContext="false" cssClass="btn btn-xs btn-info">
                                 <s:text name="actions.books.show" />
                                 <s:param name="idBook"><s:property value="id" /></s:param>
                             </s:a>
@@ -80,7 +109,7 @@
         </s:if>
         <s:else>
             <tr class="warning">
-                <td colspan="8" class="text-center"><s:text name="warnings.books.notfound" /></td>
+                <td colspan="9" class="text-center"><s:text name="warnings.books.notfound" /></td>
             </tr>
         </s:else>
     </tbody>

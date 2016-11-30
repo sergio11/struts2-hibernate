@@ -9,7 +9,7 @@
         </field-validator>
         <field-validator type="stringlength">
             <param name="minLength">10</param>
-            <param name="maxLength">35</param>
+            <param name="maxLength">100</param>
             <param name="trim">true</param>
             <message key="validations.book.title.stringlength">The title should have a length of between ${minLength} and ${maxLength}.</message>
         </field-validator>

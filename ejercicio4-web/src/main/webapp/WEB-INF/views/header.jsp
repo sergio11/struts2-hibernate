@@ -16,12 +16,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <s:a action="home" cssClass="navbar-brand">Books</s:a>
+            <s:a action="home" namespace="books" includeContext="false" cssClass="navbar-brand">Books</s:a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav">
-                <li><s:a action="employees"><s:text name="nav.link.list" /></s:a></li>
-                <li><s:a action="show_data"><s:text name="nav.link.add" /></s:a></li>
+                <li><s:a action="all" namespace="books" includeContext="false"><s:text name="nav.book.all" /></s:a></li>
+                <li><s:a action="persist" namespace="books" includeContext="false"><s:text name="nav.book.add" /></s:a></li>
             </ul>
         </div>
     </div>

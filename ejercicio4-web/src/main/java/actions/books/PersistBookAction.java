@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.opensymphony.xwork2.Preparable;
 import facade.AuthorFacadeLocal;
 import facade.BookFacadeLocal;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -76,14 +77,19 @@ public class PersistBookAction extends UploadFileAction implements Preparable, S
         return SUCCESS;
     }
    
-    public String proccess() throws Exception {
+    public String proccess() throws Exception{
         Logger.getLogger(PersistBookAction.class.getName()).log(java.util.logging.Level.INFO, "Proccess form book ...");
         session.put(CURRENT_BOOK, book);
         // upload file
         if (upload != null) {
-            UploadStrategy<PdfFile> uploadStrategy = new UploadPdfFileStrategy();
-            PdfFile file = uploadStrategy.upload(upload, uploadFileName);
-            book.setExcerpt(file);
+            try {
+                UploadStrategy<PdfFile> uploadStrategy = new UploadPdfFileStrategy();
+                PdfFile file = uploadStrategy.upload(upload, uploadFileName);
+                book.setExcerpt(file);
+            } catch (IOException ex) {
+                addActionError(getText("errors.book.upload.excerpt"));
+                throw ex;
+            }
         }
         if(book.getId() != null){
             Logger.getLogger(PersistBookAction.class.getName()).log(java.util.logging.Level.INFO, "UPDATE BOOK: " + book.toString());
